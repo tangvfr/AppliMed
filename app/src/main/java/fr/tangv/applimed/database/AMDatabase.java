@@ -6,24 +6,39 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(version = 1, entities = {})
+import fr.tangv.applimed.model.Composant;
+import fr.tangv.applimed.model.Constituer;
+import fr.tangv.applimed.model.Famille;
+import fr.tangv.applimed.model.Medicament;
+
+@Database(version = 1, entities = {
+        Composant.class,
+        Famille.class,
+        Constituer.class,
+        Medicament.class
+})
 public abstract class AMDatabase extends RoomDatabase {
 
     private static AMDatabase INSTANCE = null;
 
     public static AMDatabase createInstance(Context context) {
-        if (AMDatabase.INSTANCE == null) {
-            synchronized (AMDatabase.class) {
+        synchronized (AMDatabase.class) {
+            if (AMDatabase.INSTANCE == null) {
                 AMDatabase.INSTANCE = Room.databaseBuilder(
                                 context.getApplicationContext(),
                                 AMDatabase.class,
-                                "database-jpaarticle"
+                                "db_med_app"
                         )
                         .allowMainThreadQueries()
                         .build();
             }
         }
+
         return AMDatabase.INSTANCE;
     }
-    
+
+    public abstract ComposantDAO getComposantDAO();
+    public abstract FamilleDAO getFamilleDAO();
+    public abstract MedicamentDAO getMedicamentDAO();
+
 }

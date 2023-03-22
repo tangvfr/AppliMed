@@ -2,6 +2,7 @@ package fr.tangv.applimed.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Size;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -41,6 +42,21 @@ public class Composant {
 
     public void setLibelle(@NonNull String libelle) {
         this.libelle = libelle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Composant composant = (Composant) o;
+
+        return code.equals(composant.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return code.hashCode();
     }
 
 }

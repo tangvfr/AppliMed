@@ -2,6 +2,7 @@ package fr.tangv.applimed.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -40,5 +41,20 @@ public class Famille {
 
     public void setLibelle(@NonNull String libelle) {
         this.libelle = libelle;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Famille famille = (Famille) o;
+
+        return code.equals(famille.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return code.hashCode();
     }
 }
