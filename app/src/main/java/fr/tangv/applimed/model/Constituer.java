@@ -2,8 +2,12 @@ package fr.tangv.applimed.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
 
-@Entity(primaryKeys = {"code", "depotLegal"})
+@Entity(
+        indices = {@Index(value = {"code", "depotLegal"}, unique = true)},
+        primaryKeys = {"code", "depotLegal"}
+)
 public class Constituer {
 
     @NonNull

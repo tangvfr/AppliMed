@@ -48,12 +48,4 @@ public interface ComposantDAO {
     @Query("SELECT * FROM composant")
     public List<ComposantsEtMedicament> findAllComposantMeds();
 
-    @Transaction
-    @Update
-    public void updateComposantMed(ComposantsEtMedicament compMed);
-
-    @Transaction
-    @Update
-    public void updateAllComposantMeds(ComposantsEtMedicament compMed);
-
 }

@@ -3,11 +3,15 @@ package fr.tangv.applimed.model;
 import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.List;
 
-@Entity
+@Entity(
+        indices = {@Index(value = {"famCode"})}
+)
 public class Medicament {
 
     @PrimaryKey

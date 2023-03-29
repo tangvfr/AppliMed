@@ -57,27 +57,11 @@ public interface MedicamentDAO {
     public List<MedicamentEtComposants> findAllMedicamentComps();
 
     @Transaction
-    @Update
-    public void updateMedicamentComp(MedicamentEtComposants medComp);
-
-    @Transaction
-    @Update
-    public void updateAllMedicamentComps(MedicamentEtComposants medComp);
-
-    @Transaction
     @Query("SELECT * FROM medicament WHERE depotLegal=:depotLegal;")
     public MedicamentEtFamille findMedicamentEtFamille(String depotLegal);
 
     @Transaction
     @Query("SELECT * FROM medicament")
     public List<MedicamentEtFamille> findAllMedicamentEtFamilles();
-
-    @Transaction
-    @Update
-    public void updateMedicamentEtFamille(MedicamentEtFamille medFam);
-
-    @Transaction
-    @Update
-    public void updateAllMedicamentEtFamilles(MedicamentEtFamille medFams);
 
 }
