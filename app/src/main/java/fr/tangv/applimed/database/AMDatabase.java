@@ -21,7 +21,7 @@ public abstract class AMDatabase extends RoomDatabase {
 
     private static AMDatabase INSTANCE = null;
 
-    public static AMDatabase createInstance(Context context) {
+    public static AMDatabase getInstance(Context context) {
         synchronized (AMDatabase.class) {
             if (AMDatabase.INSTANCE == null) {
                 AMDatabase.INSTANCE = Room.databaseBuilder(

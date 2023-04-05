@@ -1,11 +1,13 @@
 package fr.tangv.applimed.database;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import android.content.Context;
 
 import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import fr.tangv.applimed.model.Famille;
@@ -17,7 +19,7 @@ class FamilleDAOTest {
     private Famille fam1;
     private Famille fam2;
 
-    @Before
+    @BeforeEach
     public void createDB() {
         Context context = ApplicationProvider.getApplicationContext();
         this.db = Room.inMemoryDatabaseBuilder(context, AMDatabase.class).build();
@@ -26,7 +28,7 @@ class FamilleDAOTest {
         this.fam2 = new Famille("bm98", "Bicorne Medium 98");
     }
 
-    @After
+    @AfterEach
     public void closeDB() {
         this.db.close();
     }
@@ -35,8 +37,8 @@ class FamilleDAOTest {
     public void insertFamille() {
         this.familleDAO.insertFamille(fam1);
         Famille famGet = this.familleDAO.findFamille(fam1.getCode());
-        assertEquals("Test d'insertion d'une famille", fam1, famGet);
-        assertTrue(false);
+        Assertions.assertEquals(fam1, famGet, "Test d'insertion d'une famille");
+        Assertions.assertTrue(false, "etsted");
     }
 
     @Test
