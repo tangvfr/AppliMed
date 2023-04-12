@@ -21,6 +21,7 @@
 
     <!-- Famille -->
     <string name="fam_title">Familles de Médicaments :</string>
+    <string name="no_fam">Aucune familles de médicaments trouvé !</string>
     <string name="fam_code">Code</string>
     <string name="fam_lib">Libelle</string>
 </resources>
