@@ -19,4 +19,8 @@
     <string name="main_menu_btn_comp">Composants</string>
     <string name="main_menu_btn_quit">Quitter</string>
 
+    <!-- Famille -->
+    <string name="fam_title">Familles de Médicaments :</string>
+    <string name="fam_code">Code</string>
+    <string name="fam_lib">Libelle</string>
 </resources>
