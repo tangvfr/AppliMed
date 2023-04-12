@@ -3,12 +3,8 @@ package fr.tangv.applimed.activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import fr.tangv.applimed.R;
 import fr.tangv.applimed.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         this.binding = ActivityMainBinding.inflate(this.getLayoutInflater());
         this.setContentView(this.binding.getRoot());
 
-        this.setSupportActionBar(this.binding.toolbar);
+        //this.setSupportActionBar(this.binding.toolbar); disable app bar
     }
 
         /*NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

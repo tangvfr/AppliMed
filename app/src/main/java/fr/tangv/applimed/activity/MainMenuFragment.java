@@ -1,14 +1,13 @@
 package fr.tangv.applimed.activity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import fr.tangv.applimed.R;
 import fr.tangv.applimed.databinding.FragmentMainMenuBinding;
@@ -23,6 +22,10 @@ public class MainMenuFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         this.binding = FragmentMainMenuBinding.inflate(inflater, container, false);
+        //definition du titre du menu
+        this.binding.topPad.setFirstBarName(
+                this.getString(R.string.main_menu_title)
+        );
         return this.binding.getRoot();
     }
 
@@ -30,13 +33,13 @@ public class MainMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //bouton composant
-        this.binding.btnComp.setOnClickListener((View v) -> {
+        this.binding.mainMenu.btnListFam.setOnClickListener((View v) -> {
             NavHostFragment.findNavController(MainMenuFragment.this)
-                    .navigate(R.id.action_mainMenuFragment_to_First2Fragment);
+                    .navigate(R.id.action_mainMenuFragment_to_familleListFragment);
         });
 
         //bouton quitter
-        this.binding.btnQuit.setOnClickListener((View v) -> {
+        this.binding.mainMenu.btnQuit.setOnClickListener((View v) -> {
             MainMenuFragment.this.getActivity().finish();
         });
     }

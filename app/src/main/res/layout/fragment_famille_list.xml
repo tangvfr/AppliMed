@@ -2,15 +2,15 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.MainMenuFragment"
+    tools:context=".activity.FamilleListFragment"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include
         android:id="@+id/top_pad"
-        layout="@layout/top_pad_home" />
+        layout="@layout/top_pad_two_text"/>
     <include
-        android:id="@+id/main_menu"
-        layout="@layout/main_menu" />
+        android:id="@+id/famille_list"
+        layout="@layout/list_border" />
 </LinearLayout>

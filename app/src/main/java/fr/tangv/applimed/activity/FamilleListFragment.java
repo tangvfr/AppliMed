@@ -7,36 +7,26 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
-import fr.tangv.applimed.R;
-import fr.tangv.applimed.databinding.FragmentFirst2Binding;
+import fr.tangv.applimed.databinding.FragmentFamilleListBinding;
 
-public class First2Fragment extends Fragment {
+public class FamilleListFragment extends Fragment {
 
-    private FragmentFirst2Binding binding;
+    private FragmentFamilleListBinding binding;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
-        binding = FragmentFirst2Binding.inflate(inflater, container, false);
+        binding = FragmentFamilleListBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(First2Fragment.this)
-                        .navigate(R.id.action_First2Fragment_to_Second2Fragment2);
-            }
-        });
+
     }
 
     @Override

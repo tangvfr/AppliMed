@@ -3,33 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/MainMenuFragment">
+    app:startDestination="@id/mainMenuFragment">
 
     <fragment
-        android:id="@+id/First2Fragment"
-        android:name="fr.tangv.applimed.activity.First2Fragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first2">
-        <action
-            android:id="@+id/action_First2Fragment_to_Second2Fragment2"
-            app:destination="@id/Second2Fragment" />
-    </fragment>
+        android:id="@+id/familleListFragment"
+        android:name="fr.tangv.applimed.activity.FamilleListFragment"
+        android:label="fragment_famille_list"
+        tools:layout="@layout/fragment_famille_list" />
     <fragment
-        android:id="@+id/Second2Fragment"
-        android:name="fr.tangv.applimed.activity.Second2Fragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second2">
-        <action
-            android:id="@+id/action_Second2Fragment_to_First2Fragment"
-            app:destination="@id/First2Fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/MainMenuFragment"
+        android:id="@+id/mainMenuFragment"
         android:name="fr.tangv.applimed.activity.MainMenuFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" >
         <action
-            android:id="@+id/action_mainMenuFragment_to_First2Fragment"
-            app:destination="@id/First2Fragment" />
+            android:id="@+id/action_mainMenuFragment_to_familleListFragment"
+            app:destination="@id/familleListFragment" />
     </fragment>
 </navigation>
