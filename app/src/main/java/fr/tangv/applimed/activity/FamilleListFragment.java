@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.tangv.applimed.R;
+import fr.tangv.applimed.action.AlertManagerFamille;
 import fr.tangv.applimed.database.AMDatabase;
 import fr.tangv.applimed.database.FamilleDAO;
 import fr.tangv.applimed.databinding.FragmentFamilleListBinding;
@@ -89,36 +90,8 @@ public class FamilleListFragment extends Fragment {
             listView.setOnItemClickListener((adapterView, iview, i, l) -> {
                 //code de famille
                 String code = ((TextView) adapterView.findViewById(R.id.leftText)).getText().toString();
-                //la famille
-                Famille fam = this.db.getFamilleDAO().findFamille(code);
-
-                View panel = FamilleListFragment.this.getLayoutInflater().inflate(R.layout.view_code_and_lib, null);
-                //labels of panel
-                ((TextView) panel.findViewById(R.id.codeLabel)).setText(R.string.code_label);
-                ((TextView) panel.findViewById(R.id.libLabel)).setText(R.string.lib_label);
-                //fields of panel
-                ((TextView) panel.findViewById(R.id.codeField)).setText(fam.getCode());
-                ((TextView) panel.findViewById(R.id.libField)).setText(fam.getLibelle());
-
-                //alert pour edit la famille
-                AlertDialog alert = new AlertDialog.Builder(iview.getContext())
-                        .setMessage("Testage: ")
-                        .setView(panel)
-                        .setPositiveButton("Ok", (dialogInterface, i1) -> {
-                            Toast.makeText(
-                                    FamilleListFragment.this.getContext(),
-                                    "héhéhéhéhéh",
-                                    Toast.LENGTH_LONG
-                            ).show();
-                        })
-                        .create();
-                alert.show();
-
-                Toast.makeText(
-                        FamilleListFragment.this.getContext(),
-                        code,
-                        Toast.LENGTH_LONG
-                ).show();
+                //affichage menu pour modifier la famille
+                new AlertManagerFamille(iview.getContext(), this.db).editFamille(code);
             });
         }
     }
