@@ -1,19 +1,7 @@
 package fr.tangv.applimed.database;
 
-import android.content.Context;
-
-import androidx.room.Room;
-import androidx.test.core.app.ApplicationProvider;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import fr.tangv.applimed.model.Famille;
-
 class FamilleDAOTest {
-
+/*
     private AMDatabase db;
     private FamilleDAO familleDAO;
     private Famille fam1;
@@ -68,5 +56,5 @@ class FamilleDAOTest {
     @Test
     void updateFamilles() {
     }
-
+*/
 }

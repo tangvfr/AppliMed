@@ -24,4 +24,8 @@
     <string name="no_fam">Aucune familles de médicaments trouvé !</string>
     <string name="fam_code">Code</string>
     <string name="fam_lib">Libelle</string>
+
+    <!-- Panel Code & Lib-->
+    <string name="code_label">Code:</string>
+    <string name="lib_label">Libelle:</string>
 </resources>

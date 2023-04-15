@@ -1,5 +1,6 @@
 package fr.tangv.applimed.activity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,9 @@ public class FamilleListFragment extends Fragment {
             this.binding.familleList.setEmptyMessage(
                     this.getString(R.string.no_fam)
             );
+            this.db.getFamilleDAO().insertFamille(
+                    new Famille("testageCode", "El besto médocanos")
+            );
         } else {
             //definition de l'adaptateur
             String[] from = {"code","lib"};
@@ -82,9 +86,34 @@ public class FamilleListFragment extends Fragment {
             listView.setAdapter(simpleAdapter);
 
             //action sur un item de la liste
-            listView.setOnItemClickListener((adapterView, view1, i, l) -> {
+            listView.setOnItemClickListener((adapterView, iview, i, l) -> {
                 //code de famille
                 String code = ((TextView) adapterView.findViewById(R.id.leftText)).getText().toString();
+                //la famille
+                Famille fam = this.db.getFamilleDAO().findFamille(code);
+
+                View panel = FamilleListFragment.this.getLayoutInflater().inflate(R.layout.view_code_and_lib, null);
+                //labels of panel
+                ((TextView) panel.findViewById(R.id.codeLabel)).setText(R.string.code_label);
+                ((TextView) panel.findViewById(R.id.libLabel)).setText(R.string.lib_label);
+                //fields of panel
+                ((TextView) panel.findViewById(R.id.codeField)).setText(fam.getCode());
+                ((TextView) panel.findViewById(R.id.libField)).setText(fam.getLibelle());
+
+                //alert pour edit la famille
+                AlertDialog alert = new AlertDialog.Builder(iview.getContext())
+                        .setMessage("Testage: ")
+                        .setView(panel)
+                        .setPositiveButton("Ok", (dialogInterface, i1) -> {
+                            Toast.makeText(
+                                    FamilleListFragment.this.getContext(),
+                                    "héhéhéhéhéh",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        })
+                        .create();
+                alert.show();
+
                 Toast.makeText(
                         FamilleListFragment.this.getContext(),
                         code,

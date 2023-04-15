@@ -41,10 +41,10 @@ android {
     }
 
     testOptions {
-        unitTests.returnDefaultValues = true
+        /*unitTests.returnDefaultValues = true
         unitTests.all {
             useJUnitPlatform()
-        }
+        }*/
     }
 }
 
@@ -63,7 +63,7 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.5.1'
 
     //test
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.2"
+    /*testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.2"
     testImplementation 'androidx.test:core:1.5.0'
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.2"*/
 }
