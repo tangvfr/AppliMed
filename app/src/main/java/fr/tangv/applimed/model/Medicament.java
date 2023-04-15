@@ -1,6 +1,7 @@
 package fr.tangv.applimed.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -10,7 +11,9 @@ import androidx.room.PrimaryKey;
 import java.util.List;
 
 @Entity(
-        indices = {@Index(value = {"famCode"})}
+        foreignKeys = {
+                @ForeignKey(entity = Famille.class, parentColumns = {"code"}, childColumns = {"famCode"})
+        }
 )
 public class Medicament {
 

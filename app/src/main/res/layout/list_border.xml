@@ -17,7 +17,7 @@
 
         <ListView
             android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
-            android:id="@+id/list_container"
+            android:id="@+id/view_list_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
 
         <TextView
             android:visibility="@{isEmpty ? View.VISIBLE : View.GONE}"
-            android:id="@+id/empty_message"
+            android:id="@+id/view_empty_message"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"

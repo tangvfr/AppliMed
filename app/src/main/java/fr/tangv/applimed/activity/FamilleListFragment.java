@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -54,7 +56,7 @@ public class FamilleListFragment extends Fragment {
 
         //déclaration variable
         FamilleDAO famDAO = this.db.getFamilleDAO();
-        ListView listView = this.binding.familleList.listContainer;
+        ListView listView = this.binding.familleList.viewListContainer;
         List<Map<String,String>> famList = this.getFamilles(famDAO);
         boolean empty = famList.isEmpty();
 
@@ -65,7 +67,8 @@ public class FamilleListFragment extends Fragment {
             this.binding.familleList.setEmptyMessage(
                     this.getString(R.string.no_fam)
             );
-        } else {//definition de l'adaptateur
+        } else {
+            //definition de l'adaptateur
             String[] from = {"code","lib"};
             int[] to = {R.id.leftText,R.id.rightText};
             //creation de l'adaptateur
@@ -77,14 +80,18 @@ public class FamilleListFragment extends Fragment {
                     to
             );
             listView.setAdapter(simpleAdapter);
+
+            //action sur un item de la liste
+            listView.setOnItemClickListener((adapterView, view1, i, l) -> {
+                //code de famille
+                String code = ((TextView) adapterView.findViewById(R.id.leftText)).getText().toString();
+                Toast.makeText(
+                        FamilleListFragment.this.getContext(),
+                        code,
+                        Toast.LENGTH_LONG
+                ).show();
+            });
         }
-        //perform listView item click event
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),fruitsNames[i],Toast.LENGTH_LONG).show();//show the selected image in toast according to position
-            }
-        });*/
     }
 
     /**

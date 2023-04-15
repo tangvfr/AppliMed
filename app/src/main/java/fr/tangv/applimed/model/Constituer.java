@@ -1,12 +1,17 @@
 package fr.tangv.applimed.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Index;
 
 @Entity(
-        indices = {@Index(value = {"code", "depotLegal"}, unique = true)},
-        primaryKeys = {"code", "depotLegal"}
+        primaryKeys = {"code", "depotLegal"},
+        foreignKeys = {
+            @ForeignKey(entity = Famille.class, parentColumns = {"code"}, childColumns = {"code"}),
+            @ForeignKey(entity = Medicament.class, parentColumns = {"depotLegal"}, childColumns = {"depotLegal"})
+        }
 )
 public class Constituer {
 
