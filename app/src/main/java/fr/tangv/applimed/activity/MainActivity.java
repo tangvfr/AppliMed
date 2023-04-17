@@ -3,6 +3,8 @@ package fr.tangv.applimed.activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import fr.tangv.applimed.databinding.ActivityMainBinding;
@@ -39,4 +41,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, this.appBarConfiguration) || super.onSupportNavigateUp();
     }*/
+
+    public static void refreshCurrentFragment(NavController navController) {
+        Integer id = navController.getCurrentDestination().getId();
+        navController.popBackStack(id,true);
+        navController.navigate(id);
+    }
+
 }

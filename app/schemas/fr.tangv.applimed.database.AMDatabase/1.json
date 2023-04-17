@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9898f781d2d86cb9f534711fdab98bec",
+    "identityHash": "0fabacfd466adb42f63147bb49a43754",
     "entities": [
       {
         "tableName": "Composant",
@@ -80,7 +80,26 @@
             "depotLegal"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Constituer_code",
+            "unique": false,
+            "columnNames": [
+              "code"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Constituer_code` ON `${TABLE_NAME}` (`code`)"
+          },
+          {
+            "name": "index_Constituer_depotLegal",
+            "unique": false,
+            "columnNames": [
+              "depotLegal"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Constituer_depotLegal` ON `${TABLE_NAME}` (`depotLegal`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "Famille",
@@ -165,7 +184,17 @@
             "depotLegal"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Medicament_famCode",
+            "unique": false,
+            "columnNames": [
+              "famCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Medicament_famCode` ON `${TABLE_NAME}` (`famCode`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "Famille",
@@ -184,7 +213,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9898f781d2d86cb9f534711fdab98bec')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0fabacfd466adb42f63147bb49a43754')"
     ]
   }
 }

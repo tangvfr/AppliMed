@@ -1,17 +1,17 @@
 package fr.tangv.applimed.activity;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +56,39 @@ public class FamilleListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //définition de l'action sur un item de la liste
+        this.binding.familleList.viewListContainer.setOnItemClickListener(this::clickOnItemAction);
+
+        //rafraichisement de la liste de famille
+        this.refreshFamList();
+    }
+
+    /*@Override
+    public void onResume() {
+        super.onResume();
+
+        //rafraichisement de la liste de famille
+        this.refreshFamList();
+    }*/
+
+    /**
+     * Action quand on click sur un item de la liste des familles
+     * @param adapterView l'adaptater de la vue
+     * @param view la vue sur laquelle l'action est faite
+     * @param i un entier
+     * @param l un entier
+     */
+    private void clickOnItemAction(AdapterView<?> adapterView, View view, int i, long l) {
+        //code de famille
+        String code = ((TextView) adapterView.findViewById(R.id.leftText)).getText().toString();
+        //affichage menu pour modifier la famille
+        new AlertManagerFamille(view, this.db).editFamille(code);
+    }
+
+    /**
+     * Permet de rafraichir la list des familles de médicament sur la vue
+     */
+    private void refreshFamList() {
         //déclaration variable
         FamilleDAO famDAO = this.db.getFamilleDAO();
         ListView listView = this.binding.familleList.viewListContainer;
@@ -85,14 +118,6 @@ public class FamilleListFragment extends Fragment {
                     to
             );
             listView.setAdapter(simpleAdapter);
-
-            //action sur un item de la liste
-            listView.setOnItemClickListener((adapterView, iview, i, l) -> {
-                //code de famille
-                String code = ((TextView) adapterView.findViewById(R.id.leftText)).getText().toString();
-                //affichage menu pour modifier la famille
-                new AlertManagerFamille(iview.getContext(), this.db).editFamille(code);
-            });
         }
     }
 

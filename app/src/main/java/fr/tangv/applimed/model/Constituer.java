@@ -6,56 +6,28 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
+@Getter
+@EqualsAndHashCode
+@AllArgsConstructor
 @Entity(
         primaryKeys = {"code", "depotLegal"},
         foreignKeys = {
-            @ForeignKey(entity = Famille.class, parentColumns = {"code"}, childColumns = {"code"}),
-            @ForeignKey(entity = Medicament.class, parentColumns = {"depotLegal"}, childColumns = {"depotLegal"})
+                @ForeignKey(entity = Famille.class, parentColumns = {"code"}, childColumns = {"code"}),
+                @ForeignKey(entity = Medicament.class, parentColumns = {"depotLegal"}, childColumns = {"depotLegal"})
         }
 )
 public class Constituer {
 
     @NonNull
+    @ColumnInfo(index = true)
     private String code;
+
     @NonNull
+    @ColumnInfo(index = true)
     private String depotLegal;
-
-    /**
-     * Permet de construire la relation entre Composant et Medicament
-     * @param code un code de composant
-     * @param depotLegal un depot legal d'un medicament
-     */
-    public Constituer(@NonNull String code, @NonNull String depotLegal) {
-        this.code = code;
-        this.depotLegal = depotLegal;
-    }
-
-    @NonNull
-    public String getCode() {
-        return this.code;
-    }
-
-    @NonNull
-    public String getDepotLegal() {
-        return this.depotLegal;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Constituer that = (Constituer) o;
-
-        if (!code.equals(that.code)) return false;
-        return depotLegal.equals(that.depotLegal);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = code.hashCode();
-        result = 31 * result + depotLegal.hashCode();
-        return result;
-    }
 
 }

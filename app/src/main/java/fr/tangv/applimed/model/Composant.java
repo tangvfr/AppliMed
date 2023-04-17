@@ -6,6 +6,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Composant {
 
@@ -24,39 +27,6 @@ public class Composant {
     public Composant(@NonNull String code, @NonNull String libelle) {
         this.code = code;
         this.libelle = libelle;
-    }
-
-    @NonNull
-    public String getCode() {
-        return this.code;
-    }
-
-    public void setCode(@NonNull String code) {
-        this.code = code;
-    }
-
-    @NonNull
-    public String getLibelle() {
-        return this.libelle;
-    }
-
-    public void setLibelle(@NonNull String libelle) {
-        this.libelle = libelle;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Composant composant = (Composant) o;
-
-        return code.equals(composant.code);
-    }
-
-    @Override
-    public int hashCode() {
-        return code.hashCode();
     }
 
 }

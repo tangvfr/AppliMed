@@ -28,4 +28,12 @@
     <!-- Panel Code & Lib-->
     <string name="code_label">Code:</string>
     <string name="lib_label">Libelle:</string>
+    <string name="editor_edit">Modifier</string>
+    <string name="editor_delete">Suprimer</string>
+    <string name="editor_view">Consulter</string>
+
+    <!-- Editor med family-->
+    <string name="fam_editor_title">Famille sélectionée:</string>
+    <string name="editor_delete_msg_fam_have_med">Erreur ! Médicaments dans cette famille !</string>
+
 </resources>

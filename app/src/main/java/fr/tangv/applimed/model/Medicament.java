@@ -10,6 +10,9 @@ import androidx.room.PrimaryKey;
 
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 @Entity(
         foreignKeys = {
                 @ForeignKey(entity = Famille.class, parentColumns = {"code"}, childColumns = {"famCode"})
@@ -33,6 +36,7 @@ public class Medicament {
     @NonNull
     private Integer stocks;
     @NonNull
+    @ColumnInfo(index = true)
     private String famCode;
 
     /**
@@ -60,90 +64,4 @@ public class Medicament {
         this.famCode = famCode;
     }
 
-    @NonNull
-    public String getDepotLegal() {
-        return this.depotLegal;
-    }
-
-    public void setDepotLegal(@NonNull String depotLegal) {
-        this.depotLegal = depotLegal;
-    }
-
-    @NonNull
-    public String getNomCommercial() {
-        return this.nomCommercial;
-    }
-
-    public void setNomCommercial(@NonNull String nomCommercial) {
-        this.nomCommercial = nomCommercial;
-    }
-
-    @NonNull
-    public String getComposittion() {
-        return this.composittion;
-    }
-
-    public void setComposittion(@NonNull String composittion) {
-        this.composittion = composittion;
-    }
-
-    @NonNull
-    public String getEffets() {
-        return this.effets;
-    }
-
-    public void setEffets(@NonNull String effets) {
-        this.effets = effets;
-    }
-
-    @NonNull
-    public String getContreIndic() {
-        return this.contreIndic;
-    }
-
-    public void setContreIndic(@NonNull String contreIndic) {
-        this.contreIndic = contreIndic;
-    }
-
-    @NonNull
-    public Double getPrixEchantillion() {
-        return this.prixEchantillion;
-    }
-
-    public void setPrixEchantillion(@NonNull Double prixEchantillion) {
-        this.prixEchantillion = prixEchantillion;
-    }
-
-    @NonNull
-    public Integer getStocks() {
-        return this.stocks;
-    }
-
-    public void setStocks(@NonNull Integer stocks) {
-        this.stocks = stocks;
-    }
-
-    @NonNull
-    public String getFamCode() {
-        return this.famCode;
-    }
-
-    public void setFamCode(@NonNull String famCode) {
-        this.famCode = famCode;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Medicament med = (Medicament) o;
-
-        return depotLegal.equals(med.depotLegal);
-    }
-
-    @Override
-    public int hashCode() {
-        return depotLegal.hashCode();
-    }
 }

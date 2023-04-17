@@ -5,6 +5,9 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Famille {
 
@@ -25,36 +28,4 @@ public class Famille {
         this.libelle = libelle;
     }
 
-    @NonNull
-    public String getCode() {
-        return this.code;
-    }
-
-    public void setCode(@NonNull String code) {
-        this.code = code;
-    }
-
-    @NonNull
-    public String getLibelle() {
-        return this.libelle;
-    }
-
-    public void setLibelle(@NonNull String libelle) {
-        this.libelle = libelle;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Famille famille = (Famille) o;
-
-        return code.equals(famille.code);
-    }
-
-    @Override
-    public int hashCode() {
-        return code.hashCode();
-    }
 }

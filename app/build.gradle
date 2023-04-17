@@ -57,6 +57,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    //lombok
+    //https://github.com/mplushnikov/lombok-intellij-plugin/issues/1111
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+
     //jpa
     annotationProcessor 'androidx.room:room-compiler:2.5.1'
     implementation 'androidx.room:room-common:2.5.1'
