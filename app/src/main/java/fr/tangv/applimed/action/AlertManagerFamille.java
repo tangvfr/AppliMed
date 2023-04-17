@@ -3,6 +3,7 @@ package fr.tangv.applimed.action;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -79,10 +80,16 @@ public class AlertManagerFamille extends AbstractAlertManager {
     private void viewAction(DialogInterface dialog, int which) {
         Toast.makeText(
                 this.getContext(),
-                "view",
+                "a finir",
                 Toast.LENGTH_LONG
         ).show();
-        dialog.dismiss();
+
+        //args to next fragement
+        Bundle bundle = new Bundle();
+        bundle.putString("famCode", this.currentFamCode);
+
+        //affichage de la liste de médicament de la famille
+        //this.getNav().navigate(R.id.action_mainMenuFragment_to_familleListFragment, bundle);
     }
 
     /**
@@ -100,13 +107,10 @@ public class AlertManagerFamille extends AbstractAlertManager {
             Context context = this.getContext();
             Toast.makeText(
                     context,
-                    context.getText(R.string.editor_delete_msg_fam_have_med),
+                    context.getText(R.string.editor_err_msg_fam_have_med),
                     Toast.LENGTH_LONG
             ).show();
         }
-
-        //close dialog
-        dialog.dismiss();
     }
 
     /**
@@ -121,17 +125,38 @@ public class AlertManagerFamille extends AbstractAlertManager {
                 this.currentLibField.getText().toString()
         );
 
+        //var utile
+        AMDatabase db = this.getDb();
+        FamilleDAO familleDAO = db.getFamilleDAO();
+        String newCode = familleOfField.getCode();
+        Context context = this.getContext();
+        String error = null;
+
         //update fam
-        FamilleDAO familleDAO = this.getDb().getFamilleDAO();
-        if (this.currentFamCode.equals(familleOfField.getCode())) {//if primary key change
+        if (this.currentFamCode.equals(newCode)) {//if primary key change
             familleDAO.updateFamille(familleOfField);
         } else {
-            familleDAO.deleteFamille(this.currentFamCode);
-            familleDAO.insertFamille(familleOfField);
+            if (newCode.isBlank()) {
+                error = context.getString(R.string.editor_err_msg_empty_pk_fam);
+            } else {
+                if (familleDAO.findFamille(newCode) != null) {
+                    error = context.getString(R.string.editor_err_msg_already_pk_fam);
+                } else {
+                    familleDAO.insertFamille(familleOfField);
+                    db.getMedicamentDAO().updateFamCode(this.currentFamCode, newCode);
+                    familleDAO.deleteFamille(this.currentFamCode);
+                }
+            }
         }
 
-        //close dialog
-        dialog.dismiss();
+        //affichage erreur
+        if (error != null) {
+            Toast.makeText(
+                    context,
+                    error,
+                    Toast.LENGTH_LONG
+            ).show();
+        }
     }
 
 }

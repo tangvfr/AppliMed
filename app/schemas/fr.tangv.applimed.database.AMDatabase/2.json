@@ -1,0 +1,219 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "0fabacfd466adb42f63147bb49a43754",
+    "entities": [
+      {
+        "tableName": "Composant",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `libelle` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "libelle",
+            "columnName": "libelle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "code"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Famille",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `libelle` TEXT NOT NULL, PRIMARY KEY(`code`))",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "libelle",
+            "columnName": "libelle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "code"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Constituer",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `depotLegal` TEXT NOT NULL, PRIMARY KEY(`code`, `depotLegal`), FOREIGN KEY(`code`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`depotLegal`) REFERENCES `Medicament`(`depotLegal`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "depotLegal",
+            "columnName": "depotLegal",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "code",
+            "depotLegal"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Constituer_code",
+            "unique": false,
+            "columnNames": [
+              "code"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Constituer_code` ON `${TABLE_NAME}` (`code`)"
+          },
+          {
+            "name": "index_Constituer_depotLegal",
+            "unique": false,
+            "columnNames": [
+              "depotLegal"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Constituer_depotLegal` ON `${TABLE_NAME}` (`depotLegal`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Famille",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "code"
+            ],
+            "referencedColumns": [
+              "code"
+            ]
+          },
+          {
+            "table": "Medicament",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "depotLegal"
+            ],
+            "referencedColumns": [
+              "depotLegal"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Medicament",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`depotLegal` TEXT NOT NULL, `nomCommercial` TEXT NOT NULL, `composittion` TEXT NOT NULL, `effets` TEXT NOT NULL, `contreIndic` TEXT NOT NULL, `prixEchantillion` REAL NOT NULL, `stocks` INTEGER NOT NULL, `famCode` TEXT NOT NULL, PRIMARY KEY(`depotLegal`), FOREIGN KEY(`famCode`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "depotLegal",
+            "columnName": "depotLegal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nomCommercial",
+            "columnName": "nomCommercial",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "composittion",
+            "columnName": "composittion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "effets",
+            "columnName": "effets",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contreIndic",
+            "columnName": "contreIndic",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prixEchantillion",
+            "columnName": "prixEchantillion",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stocks",
+            "columnName": "stocks",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "famCode",
+            "columnName": "famCode",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "depotLegal"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Medicament_famCode",
+            "unique": false,
+            "columnNames": [
+              "famCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Medicament_famCode` ON `${TABLE_NAME}` (`famCode`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Famille",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "famCode"
+            ],
+            "referencedColumns": [
+              "code"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0fabacfd466adb42f63147bb49a43754')"
+    ]
+  }
+}

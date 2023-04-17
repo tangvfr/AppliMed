@@ -39,6 +39,9 @@ public interface MedicamentDAO {
         return this.findAllMedicamentsByFamille(famille.getCode());
     }
 
+    @Query("UPDATE medicament SET famCode=:newFamCode WHERE famCode=:oldFamCode")
+    public void updateFamCode(String oldFamCode, String newFamCode);
+
     @Query("SELECT * FROM medicament")
     public List<Medicament> findAllMedicaments();
 

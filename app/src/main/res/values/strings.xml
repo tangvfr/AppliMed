@@ -34,6 +34,8 @@
 
     <!-- Editor med family-->
     <string name="fam_editor_title">Famille sélectionée:</string>
-    <string name="editor_delete_msg_fam_have_med">Erreur ! Médicaments dans cette famille !</string>
+    <string name="editor_err_msg_fam_have_med">Erreur ! Médicaments dans cette famille !</string>
+    <string name="editor_err_msg_already_pk_fam">Erreur ! Code de famille déja utilisé !</string>
+    <string name="editor_err_msg_empty_pk_fam">Erreur ! Code de famille vide !</string>
 
 </resources>
