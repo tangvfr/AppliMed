@@ -61,8 +61,8 @@ public class AlertManagerSelectComposant extends AlertManagerComposant {
                 .setTitle(R.string.form_edit_med_comp)
                 .setCancelable(false)
                 .setMultiChoiceItems(nameList, checkedList, this::onClick)
-                .setNegativeButton(R.string.form_edit_med_ch_comp_clear, this::clearAction)
-                .setNeutralButton(R.string.form_edit_med_ch_comp_cancel, this::cancelAction)
+                .setNeutralButton(R.string.form_edit_med_ch_comp_clear, this::clearAction)
+                .setNegativeButton(R.string.form_edit_med_ch_comp_cancel, this::cancelAction)
                 .setPositiveButton(R.string.form_edit_med_ch_comp_valid, this::validAction)
                 .show();
     }

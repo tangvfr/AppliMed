@@ -54,7 +54,8 @@ public abstract class AMDatabase extends RoomDatabase {
                                 AMDatabase.class,
                                 "db_med_app"
                         )
-                        //.createFromAsset()
+                        //charger la base par defaut
+                        .createFromAsset("prepackage1_v1.db")
                         //migrations
                         /*.addMigrations(
                             AMDatabase.MIGRATION_1_2
