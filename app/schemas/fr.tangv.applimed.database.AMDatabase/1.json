@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b95ff0387c1405b94fe0d21d52504b1f",
+    "identityHash": "99e5be636ba90fdd2977677c29d62974",
     "entities": [
       {
         "tableName": "Composant",
@@ -147,7 +147,7 @@
       },
       {
         "tableName": "Medicament",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`depotLegal` TEXT NOT NULL, `nomCommercial` TEXT NOT NULL, `effets` TEXT NOT NULL, `contreIndic` TEXT NOT NULL, `prixEchantillion` REAL NOT NULL, `stocks` INTEGER NOT NULL, `famCode` TEXT NOT NULL, PRIMARY KEY(`depotLegal`), FOREIGN KEY(`famCode`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`depotLegal` TEXT NOT NULL, `nomCommercial` TEXT NOT NULL, `effets` TEXT NOT NULL, `contreIndic` TEXT NOT NULL, `prixEchantillion` REAL, `stocks` INTEGER, `famCode` TEXT NOT NULL, PRIMARY KEY(`depotLegal`), FOREIGN KEY(`famCode`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "depotLegal",
@@ -177,13 +177,13 @@
             "fieldPath": "prixEchantillion",
             "columnName": "prixEchantillion",
             "affinity": "REAL",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "stocks",
             "columnName": "stocks",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "famCode",
@@ -236,7 +236,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b95ff0387c1405b94fe0d21d52504b1f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '99e5be636ba90fdd2977677c29d62974')"
     ]
   }
 }
