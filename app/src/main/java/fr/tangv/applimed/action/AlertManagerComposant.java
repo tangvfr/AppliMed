@@ -58,13 +58,12 @@ public class AlertManagerComposant extends AbstractAlertManager {
         this.currentLibField.setText(comp.getLibelle());
 
         //alert pour edit le composant
-        Context context = this.getContext();
-        AlertDialog alert = new AlertDialog.Builder(context)
-                .setMessage(context.getText(R.string.comp_editor_title))
+        AlertDialog alert = new AlertDialog.Builder(this.getContext())
+                .setMessage(R.string.comp_editor_title)
                 .setView(panel)
-                .setNeutralButton(context.getText(R.string.editor_view), this::viewAction)
-                .setNegativeButton(context.getText(R.string.editor_delete), this::deleteAction)
-                .setPositiveButton(context.getText(R.string.editor_edit), this::editAction)
+                .setNeutralButton(R.string.editor_view, this::viewAction)
+                .setNegativeButton(R.string.editor_delete, this::deleteAction)
+                .setPositiveButton(R.string.editor_edit, this::editAction)
                 .create();
         alert.show();
     }

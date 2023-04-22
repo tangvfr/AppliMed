@@ -13,4 +13,5 @@
     <include
         android:id="@+id/med_form"
         layout="@layout/edit_medicament_form"/>
+
 </LinearLayout>

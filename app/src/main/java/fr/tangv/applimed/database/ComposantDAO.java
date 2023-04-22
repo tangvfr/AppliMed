@@ -35,6 +35,9 @@ public interface ComposantDAO {
     @Query("SELECT * FROM composant")
     public List<Composant> findAllComposants();
 
+    @Query("SELECT libelle FROM composant")
+    public String[] findAlllibComposants();
+
     @Update
     public void updateComposant(Composant comp);
 

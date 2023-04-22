@@ -32,7 +32,7 @@ public class MedicamentListFragment extends Fragment {
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
-            Bundle bundle
+            Bundle saveBundle
     ) {
         this.binding = FragmentMedicamentListBinding.inflate(inflater, container, false);
         //titre
@@ -49,8 +49,8 @@ public class MedicamentListFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle bundle) {
-        super.onViewCreated(view, bundle);
+    public void onViewCreated(@NonNull View view, Bundle saveBundle) {
+        super.onViewCreated(view, saveBundle);
 
         //définition de l'action sur un item de la liste
         this.binding.medicamentList.viewListContainer.setOnItemClickListener(this::clickOnItemAction);

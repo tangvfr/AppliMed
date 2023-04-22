@@ -1,5 +1,7 @@
 package fr.tangv.applimed.database;
 
+import android.database.Cursor;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -34,6 +36,9 @@ public interface FamilleDAO {
 
     @Query("SELECT * FROM famille")
     public List<Famille> findAllFamilles();
+
+    @Query("SELECT libelle FROM famille")
+    public String[] findAllLibFamilles();
 
     @Update
     public void updateFamille(Famille fam);

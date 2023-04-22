@@ -64,7 +64,12 @@
     <string name="form_edit_med_price">Prix échantillon:</string>
     <string name="form_edit_med_quantity">Quantité Stock:</string>
     <string name="form_edit_med_fam">Famille:</string>
+    <string name="form_edit_med_comp">Sélectionné un composant</string>
     <string name="form_edit_med_btn_delete">Supprimer</string>
     <string name="form_edit_med_btn_refresh">Rafraichir</string>
     <string name="form_edit_med_btn_edit">Modifier</string>
+    <string name="form_edit_med_ch_comp_valid">Valider</string>
+    <string name="form_edit_med_ch_comp_cancel">Annuler</string>
+    <string name="form_edit_med_ch_comp_clear">Vider</string>
+    <string name="form_edit_med_ch_separator_comp">, </string>
 </resources>
