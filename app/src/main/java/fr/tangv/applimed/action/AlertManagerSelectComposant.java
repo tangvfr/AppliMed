@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -19,13 +20,13 @@ public class AlertManagerSelectComposant extends AlertManagerComposant {
 
     //gobal
     private final TextView field;
-    private final List<Composant> formListComposant;
+    private final Set<Composant> formListComposant;
 
     //local
     private List<Composant> listComposant;
     private Set<Composant> choiceComposant;
 
-    public AlertManagerSelectComposant(View view, AMDatabase db, List<Composant> formListComposant, TextView field) {
+    public AlertManagerSelectComposant(View view, AMDatabase db, Set<Composant> formListComposant, TextView field) {
         super(view, db);
         this.formListComposant = formListComposant;
         this.field = field;
@@ -125,7 +126,7 @@ public class AlertManagerSelectComposant extends AlertManagerComposant {
      * @param context un context d'application
      * @return le texte corespondant a la liste de composant séparé par une chaine de caractère défini (R.string.form_edit_med_ch_separator_comp)
      */
-    public static String composantListToString(List<Composant> composantList, Context context) {
+    public static String composantListToString(Collection<Composant> composantList, Context context) {
         //cretion de l'affichage
         final String SEPARATOR_COMP = context.getString(R.string.form_edit_med_ch_separator_comp);
         Iterator<Composant> it = composantList.iterator();

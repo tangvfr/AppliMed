@@ -138,7 +138,7 @@ public class AlertManagerFamille extends AbstractAlertManager {
         }
 
         //pas d'erreur
-        if (error != null) {
+        if (error == null) {
             if (this.currentFamCode.equals(newCode)) {//if primary key change
                 familleDAO.updateFamille(familleOfField);
             } else {

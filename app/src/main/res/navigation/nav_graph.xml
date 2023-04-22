@@ -51,9 +51,5 @@
         android:id="@+id/medicamentEditFragment"
         android:name="fr.tangv.applimed.activity.MedicamentEditFragment"
         android:label="fragment_medicament_edit"
-        tools:layout="@layout/fragment_medicament_edit" >
-        <action
-            android:id="@+id/action_medicamentEditFragment_to_medicamentListFragment"
-            app:destination="@id/medicamentListFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_medicament_edit" />
 </navigation>

@@ -1,22 +1,28 @@
 package fr.tangv.applimed.activity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import fr.tangv.applimed.R;
 import fr.tangv.applimed.action.AlertManagerSelectComposant;
 import fr.tangv.applimed.database.AMDatabase;
+import fr.tangv.applimed.database.ConsituerDAO;
+import fr.tangv.applimed.database.MedicamentDAO;
 import fr.tangv.applimed.databinding.EditMedicamentFormBinding;
 import fr.tangv.applimed.databinding.FragmentMedicamentEditBinding;
 import fr.tangv.applimed.model.Composant;
@@ -29,8 +35,8 @@ public class MedicamentEditFragment extends Fragment {
     private AMDatabase db;
     private Medicament currentMed = null;
     private Famille currentFam = null;
-    private List<Composant> currentComps = null;
-    private List<Composant> etitedComps = null;
+    private Set<Composant> currentComps = null;
+    private Set<Composant> etitedComps = null;
 
     @Override
     public View onCreateView(
@@ -56,8 +62,8 @@ public class MedicamentEditFragment extends Fragment {
         } else {
             //valeur d'un medicament
             this.currentFam = this.db.getFamilleDAO().findFamille(this.currentMed.getFamCode());
-            this.currentComps = this.db.getConsituerDAO().findComposantByDepot(this.currentMed.getDepotLegal());
-            this.etitedComps = new ArrayList<>(this.currentComps);
+            this.currentComps = new HashSet<>(this.db.getConsituerDAO().findComposantByDepot(this.currentMed.getDepotLegal()));
+            this.etitedComps = new HashSet<>(this.currentComps);
         }
 
         //titre
@@ -74,21 +80,29 @@ public class MedicamentEditFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle saveBundle) {
         super.onViewCreated(view, saveBundle);
 
-        //définition de l'action sur un item de la liste
-        /*this.binding.medicamentList.viewListContainer.setOnItemClickListener(this::clickOnItemAction);
+        //bouton edit
+        this.binding.medForm.editBtn.setOnClickListener(this::onEdit);
 
-        //bundle critère de recherche
-        String famCode = null;
-        String compCode = null;
+        //bouton refresh
+        this.binding.medForm.refreshBtn.setOnClickListener((View v) -> {
+            MainActivity.refreshCurrentFragment(
+                    Navigation.findNavController(v),
+                    MedicamentEditFragment.this.getArguments()
+            );
+        });
 
-        if (bundle != null) {//si bundle est défini (avoir des arguments)
-            famCode = bundle.getString("famCode");
-            compCode = bundle.getString("compCode");
-        }
+        //bouton delete
+        this.binding.medForm.deleteBtn.setOnClickListener((View v) -> {
+            //supresiosn du medicament
+            String depot = this.currentMed.getDepotLegal();
+            this.db.getConsituerDAO().deleteConsituerByDepotLegal(depot);
+            this.db.getMedicamentDAO().deleteMedicament(depot);
 
+            //retour en arriver sur la liste des médicaments
+            Navigation.findNavController(v).popBackStack();
+        });
 
-        //rafraichisement de la liste de medicament
-        this.refreshMedList(famCode, compCode);*/
+        //affichage du médicament
         this.showMed();
     }
 
@@ -101,12 +115,12 @@ public class MedicamentEditFragment extends Fragment {
         Medicament med = this.currentMed;
 
         //affectation champs de saisie
-        em.fieldDepot.setText(med.getDepotLegal(), TextView.BufferType.EDITABLE);
-        em.fieldName.setText(med.getNomCommercial(), TextView.BufferType.EDITABLE);
-        em.fieldEffect.setText(med.getEffets(), TextView.BufferType.EDITABLE);
-        em.fieldAlert.setText(med.getContreIndic(), TextView.BufferType.EDITABLE);
-        em.fieldPrice.setText(Double.toString(med.getPrixEchantillion()), TextView.BufferType.EDITABLE);
-        em.fieldQte.setText(Integer.toString(med.getStocks()), TextView.BufferType.EDITABLE);
+        em.fieldDepot.setText(med.getDepotLegal());
+        em.fieldName.setText(med.getNomCommercial());
+        em.fieldEffect.setText(med.getEffets());
+        em.fieldAlert.setText(med.getContreIndic());
+        em.fieldPrice.setText(Objects.toString(med.getPrixEchantillion(), ""));
+        em.fieldQte.setText(Objects.toString(med.getStocks(), ""));
         //tester si vide le nombre
 
         //on défini la liste de famille
@@ -118,7 +132,6 @@ public class MedicamentEditFragment extends Fragment {
                 famLibs
         );
         em.fieldFam.setAdapter(famAdapter);
-
         //on définit la famille choisie
         em.fieldFam.setSelection(Arrays.binarySearch(
                 famLibs,
@@ -134,9 +147,100 @@ public class MedicamentEditFragment extends Fragment {
                     em.fieldComps
             ).editListComposants();
         });
-        em.fieldComps.setText(
+        em.fieldComps.setText(//affichage de la liste de composant
                 AlertManagerSelectComposant.composantListToString(this.etitedComps, this.getContext())
         );
+    }
+
+    /**
+     * Permet de récupérer le médicament équivalent a la saisie dans le formulaire
+     */
+    private Medicament getMedFromForm() {
+        EditMedicamentFormBinding em = this.binding.medForm;
+        Medicament med = new Medicament();
+
+        //affectation champs de saisie
+        med.setDepotLegal(em.fieldDepot.getText().toString());
+        med.setNomCommercial(em.fieldName.getText().toString());
+        med.setEffets(em.fieldEffect.getText().toString());
+        med.setContreIndic(em.fieldAlert.getText().toString());
+        //prix
+        String strPrice = em.fieldPrice.getText().toString();
+        Double price = strPrice.isBlank() ? null : Double.parseDouble(strPrice);
+        med.setPrixEchantillion(price);
+        //stock
+        String strQte = em.fieldQte.getText().toString();
+        Integer qte = strQte.isBlank() ? null : Integer.parseInt(strQte);
+        med.setStocks(qte);
+
+        //on défini la liste de famille
+        Famille fam = this.db.getFamilleDAO().findFamilleByLib((String) em.fieldFam.getSelectedItem());
+        med.setFamCode(fam.getCode());
+
+        return med;
+    }
+
+    /**
+     * Action quand on clique sur le bouton modifier
+     * @param view la vue surlaquele l'action est realiser
+     */
+    public void onEdit(View view) {
+        MedicamentDAO medDAO = this.db.getMedicamentDAO();
+        Context context = this.getContext();
+        Medicament med = this.getMedFromForm();
+        String error = null;
+
+        //test nom comercial unique
+        String newNom = med.getNomCommercial();
+        if (!this.currentMed.getNomCommercial().equals(newNom)) {
+            if (newNom.isBlank()) {
+                error = context.getString(R.string.editor_err_msg_med_name_empty);
+            } else {
+                if (medDAO.findMedicamentByName(newNom) != null) {
+                    error = context.getString(R.string.editor_err_msg_med_name_already);
+                }
+            }
+        }
+
+        //si pas d'erreur alors test clé primaire
+        if (error == null) {
+            ConsituerDAO consDAO = this.db.getConsituerDAO();
+            //if primary key change
+            String newDepot = med.getDepotLegal();
+            String oldDepot = this.currentMed.getDepotLegal();
+            if (oldDepot.equals(newDepot)) {
+                //mise a jour normal
+                consDAO.deleteConsituerByDepotLegal(oldDepot);
+                medDAO.updateMedicament(med);
+                consDAO.insertConstituers(newDepot, this.etitedComps);
+            } else {
+                if (newDepot.isBlank()) {
+                    error = context.getString(R.string.editor_err_msg_empty_pk_med);
+                } else {
+                    if (medDAO.findMedicament(newDepot) != null) {
+                        error = context.getString(R.string.editor_err_msg_already_pk_med);
+                    } else {
+                        //mise a jour nouveau depot
+                        consDAO.deleteConsituerByDepotLegal(oldDepot);
+                        medDAO.deleteMedicament(oldDepot);
+                        medDAO.insertMedicament(med);
+                        consDAO.insertConstituers(newDepot, this.etitedComps);
+                    }
+                }
+            }
+        }
+
+        //affichage erreur
+        if (error != null) {
+            Toast.makeText(
+                    context,
+                    error,
+                    Toast.LENGTH_LONG
+            ).show();
+        } else {
+            //retour a la liste des medicament
+            Navigation.findNavController(view).popBackStack();
+        }
     }
 
     @Override

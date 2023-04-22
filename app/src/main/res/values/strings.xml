@@ -53,10 +53,10 @@
 
     <!-- Editor med-->
     <string name="med_editor_title">Médicament sélectionné:</string>
-    <string name="editor_err_msg_already_pk_med">Erreur ! Code de composant deja utilisé !</string>
-    <string name="editor_err_msg_empty_pk_med">Erreur ! Code de composant vide !</string>
-    <string name="editor_err_msg_med_name_already">Erreur ! Libelle de composant déja utilisé !</string>
-    <string name="editor_err_msg_med__empty">Erreur ! Libelle de composant vide !</string>
+    <string name="editor_err_msg_already_pk_med">Erreur ! DepotLégal de médicament deja utilisé !</string>
+    <string name="editor_err_msg_empty_pk_med">Erreur ! DepotLégal de médicament vide !</string>
+    <string name="editor_err_msg_med_name_already">Erreur ! Nom commercial de médicament déjà utilisé !</string>
+    <string name="editor_err_msg_med_name_empty">Erreur ! Nom commercial de médicament vide !</string>
     <string name="form_edit_med_depot">Dépot Légal:</string>
     <string name="form_edit_med_name">Nom Commercial:</string>
     <string name="form_edit_med_effect">Effects:</string>

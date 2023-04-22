@@ -29,9 +29,18 @@ public class MainActivity extends AppCompatActivity {
      * @param navController un controller de navigation
      */
     public static void refreshCurrentFragment(NavController navController) {
+        MainActivity.refreshCurrentFragment(navController, null);
+    }
+
+    /**
+     * Permet de recharger le fragement surlequelle on est actuellement
+     * @param navController un controller de navigation
+     * @param args argument pour réaficher un fragement
+     */
+    public static void refreshCurrentFragment(NavController navController, Bundle args) {
         Integer id = navController.getCurrentDestination().getId();
         navController.popBackStack(id,true);
-        navController.navigate(id);
+        navController.navigate(id, args);
     }
 
 }

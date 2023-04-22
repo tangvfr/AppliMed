@@ -138,7 +138,7 @@ public class AlertManagerComposant extends AbstractAlertManager {
         }
 
         //pas d'erreur
-        if (error != null) {
+        if (error == null) {
             //if primary key change
             if (this.currentCompCode.equals(newCode)) {
                 composantDAO.updateComposant(composantOfField);

@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -30,13 +31,17 @@ public class Medicament {
     private String effets;
     @NonNull
     private String contreIndic;
-    @NonNull
     private Double prixEchantillion;
-    @NonNull
     private Integer stocks;
     @NonNull
     @ColumnInfo(index = true)
     private String famCode;
+
+    /**
+     * Permet de construire un médicament vide/nulle
+     */
+    @Ignore
+    public Medicament() {}
 
     /**
      * Permet de construire un médicament
@@ -49,8 +54,8 @@ public class Medicament {
      * @param famCode code de la famille
      */
     public Medicament(@NonNull String depotLegal, @NonNull String nomCommercial,
-                      @NonNull String effets, @NonNull String contreIndic, @NonNull Double prixEchantillion,
-                      @NonNull Integer stocks, @NonNull String famCode
+                      @NonNull String effets, @NonNull String contreIndic, Double prixEchantillion,
+                      Integer stocks, @NonNull String famCode
     ) {
         this.depotLegal = depotLegal;
         this.nomCommercial = nomCommercial;
