@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(indices = {@Index(value = {"libelle"}, unique = true)})
 public class Composant {
 
     @PrimaryKey

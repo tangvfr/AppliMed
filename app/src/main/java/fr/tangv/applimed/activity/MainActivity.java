@@ -24,24 +24,10 @@ public class MainActivity extends AppCompatActivity {
         //this.setSupportActionBar(this.binding.toolbar); disable app bar
     }
 
-        /*NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        this.appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-    /*@Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, this.appBarConfiguration) || super.onSupportNavigateUp();
-    }*/
-
+    /**
+     * Permet de recharger le fragement surlequelle on est actuellement
+     * @param navController un controller de navigation
+     */
     public static void refreshCurrentFragment(NavController navController) {
         Integer id = navController.getCurrentDestination().getId();
         navController.popBackStack(id,true);

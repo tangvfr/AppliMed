@@ -10,8 +10,6 @@ import androidx.room.Update;
 import java.util.List;
 
 import fr.tangv.applimed.model.Composant;
-import fr.tangv.applimed.model.ComposantsEtMedicament;
-import fr.tangv.applimed.model.MedicamentEtComposants;
 
 @Dao
 public interface ComposantDAO {
@@ -31,6 +29,9 @@ public interface ComposantDAO {
     @Query("SELECT * FROM composant WHERE code=:code;")
     public Composant findComposant(String code);
 
+    @Query("SELECT * FROM composant WHERE libelle=:lib;")
+    public Composant findComposantByLib(String lib);
+
     @Query("SELECT * FROM composant")
     public List<Composant> findAllComposants();
 
@@ -40,12 +41,12 @@ public interface ComposantDAO {
     @Update
     public void updateComposants(Composant... comps);
 
-    @Transaction
+   /*@Transaction
     @Query("SELECT * FROM composant WHERE code=:code;")
     public ComposantsEtMedicament findComposantMed(String code);
 
     @Transaction
     @Query("SELECT * FROM composant")
-    public List<ComposantsEtMedicament> findAllComposantMeds();
+    public List<ComposantsEtMedicament> findAllComposantMeds();*/
 
 }

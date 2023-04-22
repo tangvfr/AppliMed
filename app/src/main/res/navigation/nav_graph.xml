@@ -9,7 +9,11 @@
         android:id="@+id/familleListFragment"
         android:name="fr.tangv.applimed.activity.FamilleListFragment"
         android:label="fragment_famille_list"
-        tools:layout="@layout/fragment_famille_list" />
+        tools:layout="@layout/fragment_famille_list" >
+        <action
+            android:id="@+id/action_familleListFragment_to_medicamentListFragment"
+            app:destination="@id/medicamentListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainMenuFragment"
         android:name="fr.tangv.applimed.activity.MainMenuFragment"
@@ -18,5 +22,38 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_familleListFragment"
             app:destination="@id/familleListFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_composantListFragment"
+            app:destination="@id/composantListFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_medicamentListFragment"
+            app:destination="@id/medicamentListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/composantListFragment"
+        android:name="fr.tangv.applimed.activity.ComposantListFragment"
+        android:label="fragment_composant_list"
+        tools:layout="@layout/fragment_composant_list" >
+        <action
+            android:id="@+id/action_composantListFragment_to_medicamentListFragment"
+            app:destination="@id/medicamentListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicamentListFragment"
+        android:name="fr.tangv.applimed.activity.MedicamentListFragment"
+        android:label="fragment_medicament_list"
+        tools:layout="@layout/fragment_medicament_list" >
+        <action
+            android:id="@+id/action_medicamentListFragment_to_medicamentEditFragment"
+            app:destination="@id/medicamentEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medicamentEditFragment"
+        android:name="fr.tangv.applimed.activity.MedicamentEditFragment"
+        android:label="fragment_medicament_edit"
+        tools:layout="@layout/fragment_medicament_edit" >
+        <action
+            android:id="@+id/action_medicamentEditFragment_to_medicamentListFragment"
+            app:destination="@id/medicamentListFragment" />
     </fragment>
 </navigation>

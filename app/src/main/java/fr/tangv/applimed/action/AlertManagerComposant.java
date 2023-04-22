@@ -12,37 +12,37 @@ import android.widget.Toast;
 import fr.tangv.applimed.R;
 import fr.tangv.applimed.activity.MainActivity;
 import fr.tangv.applimed.database.AMDatabase;
-import fr.tangv.applimed.database.FamilleDAO;
-import fr.tangv.applimed.model.Famille;
+import fr.tangv.applimed.database.ComposantDAO;
+import fr.tangv.applimed.model.Composant;
 
 /**
- * Permet de gérer l'affichage de l'éditeur/supréseur d'une famille de médicament
+ * Permet de gérer l'affichage de l'éditeur/supréseur d'une composant de médicament
  */
-public class AlertManagerFamille extends AbstractAlertManager {
+public class AlertManagerComposant extends AbstractAlertManager {
 
-    private String currentFamCode = null;
-    private String currentFamLib = null;
+    private String currentCompCode = null;
+    private String currentCompLib = null;
     private EditText currentCodeField = null;
     private EditText currentLibField = null;
 
     /**
-     * Constructeur du gestionnaire d'etion d'une famille de médicament
+     * Constructeur du gestionnaire d'etion d'un composant de médicament
      * @param view vue qui execute l'action
      * @param db la base de données
      */
-    public AlertManagerFamille(View view, AMDatabase db) {
+    public AlertManagerComposant(View view, AMDatabase db) {
         super(view, db);
     }
 
     /**
-     * Permet d'afficher le dialog de modification d'une famille de médicament
-     * @param code le code de la famille de médicament modifier
+     * Permet d'afficher le dialog de modification d'un composant de médicament
+     * @param code le code de du composant de médicament modifier
      */
-    public void editFamille(String code) {
-        //récupération de la famille
-        this.currentFamCode = code;//on défini la famille actuellement utiliser
-        Famille fam = this.getDb().getFamilleDAO().findFamille(code);
-        this.currentFamLib = fam.getLibelle();//on défini le nom de la famille actuellement utiliser
+    public void editComposant(String code) {
+        //récupération de la composant
+        this.currentCompCode = code;//on défini le composant actuellement utiliser
+        Composant comp = this.getDb().getComposantDAO().findComposant(code);
+        this.currentCompLib = comp.getLibelle();//on défini le nom du composant actuellement utiliser
 
         //gestionaire de layout
         View panel = this.getInflater().inflate(R.layout.view_code_and_lib, null);
@@ -54,13 +54,13 @@ public class AlertManagerFamille extends AbstractAlertManager {
         this.currentLibField = ((EditText) panel.findViewById(R.id.libField));
 
         //set fields of panel
-        this.currentCodeField.setText(fam.getCode());
-        this.currentLibField.setText(fam.getLibelle());
+        this.currentCodeField.setText(comp.getCode());
+        this.currentLibField.setText(comp.getLibelle());
 
-        //alert pour edit la famille
+        //alert pour edit le composant
         Context context = this.getContext();
         AlertDialog alert = new AlertDialog.Builder(context)
-                .setMessage(context.getText(R.string.fam_editor_title))
+                .setMessage(context.getText(R.string.comp_editor_title))
                 .setView(panel)
                 .setNeutralButton(context.getText(R.string.editor_view), this::viewAction)
                 .setNegativeButton(context.getText(R.string.editor_delete), this::deleteAction)
@@ -77,10 +77,10 @@ public class AlertManagerFamille extends AbstractAlertManager {
     private void viewAction(DialogInterface dialog, int which) {
         //args to next fragement
         Bundle bundle = new Bundle();
-        bundle.putString("famCode", this.currentFamCode);
+        bundle.putString("compCode", this.currentCompCode);
 
-        //affichage de la liste de médicament de la famille
-        this.getNav().navigate(R.id.action_familleListFragment_to_medicamentListFragment, bundle);
+        //affichage de la liste de médicament avec le composant
+        this.getNav().navigate(R.id.action_composantListFragment_to_medicamentListFragment, bundle);
     }
 
     /**
@@ -90,17 +90,17 @@ public class AlertManagerFamille extends AbstractAlertManager {
      */
     private void deleteAction(DialogInterface dialog, int which) {
         AMDatabase db = this.getDb();
-        if (db.getMedicamentDAO().findAllMedicamentsByFamille(this.currentFamCode).isEmpty()) {//test fam is used
-            //delete fam
-            db.getFamilleDAO().deleteFamille(this.currentFamCode);
+        if (db.getConsituerDAO().findAllConsituerByComposant(this.currentCompCode).isEmpty()) {//test comp is used
+            //delete comp
+            db.getComposantDAO().deleteComposant(this.currentCompCode);
             //on rachraichi la page
             MainActivity.refreshCurrentFragment(this.getNav());
         } else {
-            //error msg fam is used
+            //error msg comp is used
             Context context = this.getContext();
             Toast.makeText(
                     context,
-                    context.getText(R.string.editor_err_msg_fam_have_med),
+                    context.getText(R.string.editor_err_msg_comp_have_med),
                     Toast.LENGTH_LONG
             ).show();
         }
@@ -113,45 +113,46 @@ public class AlertManagerFamille extends AbstractAlertManager {
      */
     private void editAction(DialogInterface dialog, int which) {
         //view form to object
-        Famille familleOfField = new Famille(
+        Composant composantOfField = new Composant(
                 this.currentCodeField.getText().toString(),
                 this.currentLibField.getText().toString()
         );
 
         //var utile
         AMDatabase db = this.getDb();
-        FamilleDAO familleDAO = db.getFamilleDAO();
-        String newCode = familleOfField.getCode();
-        String newLib = familleOfField.getLibelle();
+        ComposantDAO composantDAO = db.getComposantDAO();
+        String newCode = composantOfField.getCode();
+        String newLib = composantOfField.getLibelle();
         Context context = this.getContext();
         String error = null;
 
-        //update fam
+        //update comp
         //check unique lib
-        if (!this.currentFamLib.equals(newLib)) {
+        if (!this.currentCompLib.equals(newLib)) {
             if (newLib.isBlank()) {
-                error = context.getString(R.string.editor_err_msg_fam_lib_empty);
+                error = context.getString(R.string.editor_err_msg_comp_lib_empty);
             } else {
-                if (familleDAO.findFamilleByLib(newLib) != null) {
-                    error = context.getString(R.string.editor_err_msg_fam_lib_already);
+                if (composantDAO.findComposantByLib(newLib) != null) {
+                    error = context.getString(R.string.editor_err_msg_comp_lib_already);
                 }
             }
         }
 
         //pas d'erreur
         if (error != null) {
-            if (this.currentFamCode.equals(newCode)) {//if primary key change
-                familleDAO.updateFamille(familleOfField);
+            //if primary key change
+            if (this.currentCompCode.equals(newCode)) {
+                composantDAO.updateComposant(composantOfField);
             } else {
                 if (newCode.isBlank()) {
-                    error = context.getString(R.string.editor_err_msg_empty_pk_fam);
+                    error = context.getString(R.string.editor_err_msg_empty_pk_comp);
                 } else {
-                    if (familleDAO.findFamille(newCode) != null) {
-                        error = context.getString(R.string.editor_err_msg_already_pk_fam);
+                    if (composantDAO.findComposant(newCode) != null) {
+                        error = context.getString(R.string.editor_err_msg_already_pk_comp);
                     } else {
-                        familleDAO.insertFamille(familleOfField);
-                        db.getMedicamentDAO().updateFamCode(this.currentFamCode, newCode);
-                        familleDAO.deleteFamille(this.currentFamCode);
+                        composantDAO.insertComposant(composantOfField);
+                        db.getConsituerDAO().updateCompCode(this.currentCompCode, newCode);
+                        composantDAO.deleteComposant(this.currentCompCode);
                     }
                 }
             }

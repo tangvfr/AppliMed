@@ -1,14 +1,6 @@
 <resources>
-    <!-- A sup -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
     <!-- General -->
-    <string name="title_activity_main">AppliMed</string>
+    <string name="title_activity_main">Application Médicament</string>
     <string name="general_not_define">Non défini</string>
 
     <!-- Main menu -->
@@ -21,21 +13,58 @@
 
     <!-- Famille -->
     <string name="fam_title">Familles de Médicaments :</string>
-    <string name="no_fam">Aucune familles de médicaments trouvé !</string>
+    <string name="no_fam">Aucune famille de médicament trouvé !</string>
     <string name="fam_code">Code</string>
     <string name="fam_lib">Libelle</string>
+
+    <!-- Composant -->
+    <string name="comp_title">Composants des Médicaments :</string>
+    <string name="no_comp">Aucun composant de médicament trouvé !</string>
+    <string name="comp_code">Code</string>
+    <string name="comp_lib">Libelle</string>
 
     <!-- Panel Code & Lib-->
     <string name="code_label">Code:</string>
     <string name="lib_label">Libelle:</string>
     <string name="editor_edit">Modifier</string>
-    <string name="editor_delete">Suprimer</string>
+    <string name="editor_delete">Supprimer</string>
     <string name="editor_view">Consulter</string>
 
     <!-- Editor med family-->
-    <string name="fam_editor_title">Famille sélectionée:</string>
+    <string name="fam_editor_title">Famille sélectionnée:</string>
     <string name="editor_err_msg_fam_have_med">Erreur ! Médicaments dans cette famille !</string>
     <string name="editor_err_msg_already_pk_fam">Erreur ! Code de famille déja utilisé !</string>
     <string name="editor_err_msg_empty_pk_fam">Erreur ! Code de famille vide !</string>
+    <string name="editor_err_msg_fam_lib_already">Erreur ! Libelle de famille déja utilisé !</string>
+    <string name="editor_err_msg_fam_lib_empty">Erreur ! Libelle de famille vide !</string>
 
+    <!-- Editor med comp-->
+    <string name="comp_editor_title">Composant sélectionné:</string>
+    <string name="editor_err_msg_comp_have_med">Erreur ! Médicaments utilisant ce composant !</string>
+    <string name="editor_err_msg_already_pk_comp">Erreur ! Code de composant deja utilisé !</string>
+    <string name="editor_err_msg_empty_pk_comp">Erreur ! Code de composant vide !</string>
+    <string name="editor_err_msg_comp_lib_already">Erreur ! Libelle de composant déja utilisé !</string>
+    <string name="editor_err_msg_comp_lib_empty">Erreur ! Libelle de composant vide !</string>
+
+    <!-- Medicament -->
+    <string name="med_title">Liste des Médicaments :</string>
+    <string name="no_med">Aucun médicament trouvé !</string>
+    <string name="med_name">Nom Commercial</string>
+
+    <!-- Editor med-->
+    <string name="med_editor_title">Médicament sélectionné:</string>
+    <string name="editor_err_msg_already_pk_med">Erreur ! Code de composant deja utilisé !</string>
+    <string name="editor_err_msg_empty_pk_med">Erreur ! Code de composant vide !</string>
+    <string name="editor_err_msg_med_name_already">Erreur ! Libelle de composant déja utilisé !</string>
+    <string name="editor_err_msg_med__empty">Erreur ! Libelle de composant vide !</string>
+    <string name="form_edit_med_depot">Dépot Légal:</string>
+    <string name="form_edit_med_name">Nom Commercial:</string>
+    <string name="form_edit_med_effect">Effects:</string>
+    <string name="form_edit_med_alert">ContreIndic:</string>
+    <string name="form_edit_med_price">Prix échantillon:</string>
+    <string name="form_edit_med_quantity">Quantité Stock:</string>
+    <string name="form_edit_med_fam">Famille:</string>
+    <string name="form_edit_med_btn_delete">Supprimer</string>
+    <string name="form_edit_med_btn_refresh">Rafraichir</string>
+    <string name="form_edit_med_btn_edit">Modifier</string>
 </resources>

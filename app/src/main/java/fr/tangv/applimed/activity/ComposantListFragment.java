@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,15 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 import fr.tangv.applimed.R;
-import fr.tangv.applimed.action.AlertManagerFamille;
+import fr.tangv.applimed.action.AlertManagerComposant;
 import fr.tangv.applimed.database.AMDatabase;
-import fr.tangv.applimed.database.FamilleDAO;
-import fr.tangv.applimed.databinding.FragmentFamilleListBinding;
-import fr.tangv.applimed.model.Famille;
+import fr.tangv.applimed.database.ComposantDAO;
+import fr.tangv.applimed.databinding.FragmentComposantListBinding;
+import fr.tangv.applimed.model.Composant;
 
-public class FamilleListFragment extends Fragment {
+public class ComposantListFragment extends Fragment {
 
-    private FragmentFamilleListBinding binding;
+    private FragmentComposantListBinding binding;
     private AMDatabase db;
 
     @Override
@@ -35,18 +34,18 @@ public class FamilleListFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        this.binding = FragmentFamilleListBinding.inflate(inflater, container, false);
+        this.binding = FragmentComposantListBinding.inflate(inflater, container, false);
         //titre
         this.binding.topPad.setTitleBarName(
-                this.getString(R.string.fam_title)
+                this.getString(R.string.comp_title)
         );
         //text a gauche
         this.binding.topPad.setFirstBarName(
-                this.getString(R.string.fam_code)
+                this.getString(R.string.comp_code)
         );
         //text a droite
         this.binding.topPad.setSecondBarName(
-                this.getString(R.string.fam_lib)
+                this.getString(R.string.comp_lib)
         );
         //create connection to db
         this.db = AMDatabase.getInstance(container.getContext());
@@ -57,50 +56,42 @@ public class FamilleListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //définition de l'action sur un item de la liste
-        this.binding.familleList.viewListContainer.setOnItemClickListener(this::clickOnItemAction);
+        this.binding.composantList.viewListContainer.setOnItemClickListener(this::clickOnItemAction);
 
-        //rafraichisement de la liste de famille
-        this.refreshFamList();
+        //rafraichisement de la liste de composant
+        this.refreshCompList();
     }
 
-    /*@Override
-    public void onResume() {
-        super.onResume();
-
-        //rafraichisement de la liste de famille
-        this.refreshFamList();
-    }*/
-
     /**
-     * Action quand on click sur un item de la liste des familles
+     * Action quand on click sur un item de la liste des composants
      * @param adapterView l'adaptater de la vue
      * @param view la vue sur laquelle l'action est faite
      * @param i un entier
      * @param l un entier
      */
     private void clickOnItemAction(AdapterView<?> adapterView, View view, int i, long l) {
-        //code de famille
+        //code de composant
         String code = ((Map<String,String>) adapterView.getItemAtPosition(i)).get("code");
-        //affichage menu pour modifier la famille
-        new AlertManagerFamille(view, this.db).editFamille(code);
+        //affichage menu pour modifier la composant
+        new AlertManagerComposant(view, this.db).editComposant(code);
     }
 
     /**
-     * Permet de rafraichir la list des familles de médicament sur la vue
+     * Permet de rafraichir la list des composants de médicament sur la vue
      */
-    private void refreshFamList() {
+    private void refreshCompList() {
         //déclaration variable
-        FamilleDAO famDAO = this.db.getFamilleDAO();
-        ListView listView = this.binding.familleList.viewListContainer;
-        List<Map<String,String>> famList = this.getFamilles(famDAO);
-        boolean empty = famList.isEmpty();
+        ComposantDAO compDAO = this.db.getComposantDAO();
+        ListView listView = this.binding.composantList.viewListContainer;
+        List<Map<String,String>> compList = this.getComposants(compDAO);
+        boolean empty = compList.isEmpty();
 
         //envoie a la vue si vide
-        this.binding.familleList.setIsEmpty(empty);
+        this.binding.composantList.setIsEmpty(empty);
 
         if (empty) {//affichage message
-            this.binding.familleList.setEmptyMessage(
-                    this.getString(R.string.no_fam)
+            this.binding.composantList.setEmptyMessage(
+                    this.getString(R.string.no_comp)
             );
         } else {
             //definition de l'adaptateur
@@ -109,7 +100,7 @@ public class FamilleListFragment extends Fragment {
             //creation de l'adaptateur
             SimpleAdapter simpleAdapter = new SimpleAdapter(
                     this.getContext(),
-                    famList,
+                    compList,
                     R.layout.two_text_list_item,
                     from,
                     to
@@ -119,23 +110,23 @@ public class FamilleListFragment extends Fragment {
     }
 
     /**
-     * Récupère toutes les familles de produit dans la base de donnée
-     * et les renvoie sous forme de list de list d'assocation clé valeur pour une famille
-     * @param dao DAO de famille
-     * @return list des familles
+     * Récupère toutes les composants de produit dans la base de donnée
+     * et les renvoie sous forme de list de list d'assocation clé valeur pour une composant
+     * @param dao DAO de composant
+     * @return list des composants
      */
-    private List<Map<String,String>> getFamilles(FamilleDAO dao) {
-        List<Map<String,String>> famList = new ArrayList<>();
+    private List<Map<String,String>> getComposants(ComposantDAO dao) {
+        List<Map<String,String>> compList = new ArrayList<>();
 
-        for (Famille fam : dao.findAllFamilles())//pour toutes les familles de médicament
+        for (Composant comp : dao.findAllComposants())//pour toutes les composants de médicament
         {
             HashMap<String,String> hashMap=new HashMap<>();
-            hashMap.put("code", fam.getCode());
-            hashMap.put("lib", fam.getLibelle());
-            famList.add(hashMap);
+            hashMap.put("code", comp.getCode());
+            hashMap.put("lib", comp.getLibelle());
+            compList.add(hashMap);
         }
 
-        return famList;
+        return compList;
     }
 
     @Override

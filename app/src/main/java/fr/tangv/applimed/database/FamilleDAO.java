@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import fr.tangv.applimed.model.Composant;
 import fr.tangv.applimed.model.Famille;
 
 @Dao
@@ -27,6 +28,9 @@ public interface FamilleDAO {
 
     @Query("SELECT * FROM famille WHERE code=:code;")
     public Famille findFamille(String code);
+
+    @Query("SELECT * FROM famille WHERE libelle=:lib;")
+    public Famille findFamilleByLib(String lib);
 
     @Query("SELECT * FROM famille")
     public List<Famille> findAllFamilles();

@@ -36,12 +36,4 @@ public class AbstractAlertManager {
         this.inflater = this.context.getSystemService(LayoutInflater.class);
     }
 
-    /**
-     * Action quand le dialog disparait, qui va rafraichir le fragement courant
-     * @param dialog le dialog qui disparait
-     */
-    public void dismissAction(DialogInterface dialog) {
-        MainActivity.refreshCurrentFragment(this.nav);
-    }
-
 }

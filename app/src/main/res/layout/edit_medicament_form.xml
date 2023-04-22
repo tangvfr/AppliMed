@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutForm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/teal_200"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayoutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/labelDepot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/form_edit_med_depot"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fieldDepot"
+            app:layout_constraintEnd_toStartOf="@+id/fieldDepot"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/fieldDepot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/fieldName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/form_edit_med_name"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fieldName"
+            app:layout_constraintEnd_toStartOf="@+id/fieldName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/fieldName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/fieldEffect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fieldDepot" />
+
+        <TextView
+            android:id="@+id/labelEffect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/form_edit_med_effect"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fieldEffect"
+            app:layout_constraintEnd_toStartOf="@+id/fieldEffect"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/fieldEffect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/fieldAlert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fieldName" />
+
+        <TextView
+            android:id="@+id/labelAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/form_edit_med_alert"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fieldAlert"
+            app:layout_constraintEnd_toStartOf="@+id/fieldAlert"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/fieldAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/fieldPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fieldEffect" />
+
+        <TextView
+            android:id="@+id/labelPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/form_edit_med_price"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fieldPrice"
+            app:layout_constraintEnd_toStartOf="@+id/fieldPrice"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/fieldPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/fieldQte"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fieldAlert" />
+
+        <TextView
+            android:id="@+id/labelQte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/form_edit_med_quantity"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fieldQte"
+            app:layout_constraintEnd_toStartOf="@+id/fieldQte"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/fieldQte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/fieldFam"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fieldPrice" />
+
+        <TextView
+            android:id="@+id/labelFam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/form_edit_med_fam"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fieldFam"
+            app:layout_constraintEnd_toStartOf="@+id/fieldFam"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fieldFam" />
+
+        <Spinner
+            android:id="@+id/fieldFam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/fieldComps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/labelFam"
+            app:layout_constraintTop_toBottomOf="@+id/fieldQte" />
+
+        <Spinner
+            android:id="@+id/fieldComps"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fieldFam" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/form_edit_med_btn_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/refreshBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            app:icon="@android:drawable/ic_popup_sync"
+            app:iconPadding="4dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/deleteBtn"
+            app:layout_constraintEnd_toStartOf="@+id/editBtn"
+            app:layout_constraintStart_toEndOf="@+id/deleteBtn" />
+
+        <Button
+            android:id="@+id/editBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/form_edit_med_btn_edit"
+            app:layout_constraintBaseline_toBaselineOf="@+id/refreshBtn"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

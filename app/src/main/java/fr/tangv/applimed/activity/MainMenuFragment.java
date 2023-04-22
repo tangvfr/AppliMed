@@ -32,10 +32,22 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //bouton composant
+        //bouton famille
         this.binding.mainMenu.btnListFam.setOnClickListener((View v) -> {
             NavHostFragment.findNavController(MainMenuFragment.this)
                     .navigate(R.id.action_mainMenuFragment_to_familleListFragment);
+        });
+
+        //bouton medicament
+        this.binding.mainMenu.btnListMed.setOnClickListener((View v) -> {
+            NavHostFragment.findNavController(MainMenuFragment.this)
+                    .navigate(R.id.action_mainMenuFragment_to_medicamentListFragment);
+        });
+
+        //bouton composant
+        this.binding.mainMenu.btnComp.setOnClickListener((View v) -> {
+            NavHostFragment.findNavController(MainMenuFragment.this)
+                    .navigate(R.id.action_mainMenuFragment_to_composantListFragment);
         });
 
         //bouton quitter

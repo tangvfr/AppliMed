@@ -16,7 +16,7 @@ import lombok.Getter;
 @Entity(
         primaryKeys = {"code", "depotLegal"},
         foreignKeys = {
-                @ForeignKey(entity = Famille.class, parentColumns = {"code"}, childColumns = {"code"}),
+                @ForeignKey(entity = Composant.class, parentColumns = {"code"}, childColumns = {"code"}),
                 @ForeignKey(entity = Medicament.class, parentColumns = {"depotLegal"}, childColumns = {"depotLegal"})
         }
 )

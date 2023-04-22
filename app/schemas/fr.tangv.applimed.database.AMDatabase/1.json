@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0fabacfd466adb42f63147bb49a43754",
+    "identityHash": "b95ff0387c1405b94fe0d21d52504b1f",
     "entities": [
       {
         "tableName": "Composant",
@@ -27,7 +27,17 @@
             "code"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Composant_libelle",
+            "unique": true,
+            "columnNames": [
+              "libelle"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Composant_libelle` ON `${TABLE_NAME}` (`libelle`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
@@ -53,12 +63,22 @@
             "code"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Famille_libelle",
+            "unique": true,
+            "columnNames": [
+              "libelle"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Famille_libelle` ON `${TABLE_NAME}` (`libelle`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
         "tableName": "Constituer",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `depotLegal` TEXT NOT NULL, PRIMARY KEY(`code`, `depotLegal`), FOREIGN KEY(`code`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`depotLegal`) REFERENCES `Medicament`(`depotLegal`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`code` TEXT NOT NULL, `depotLegal` TEXT NOT NULL, PRIMARY KEY(`code`, `depotLegal`), FOREIGN KEY(`code`) REFERENCES `Composant`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`depotLegal`) REFERENCES `Medicament`(`depotLegal`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "code",
@@ -102,7 +122,7 @@
         ],
         "foreignKeys": [
           {
-            "table": "Famille",
+            "table": "Composant",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -127,7 +147,7 @@
       },
       {
         "tableName": "Medicament",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`depotLegal` TEXT NOT NULL, `nomCommercial` TEXT NOT NULL, `composittion` TEXT NOT NULL, `effets` TEXT NOT NULL, `contreIndic` TEXT NOT NULL, `prixEchantillion` REAL NOT NULL, `stocks` INTEGER NOT NULL, `famCode` TEXT NOT NULL, PRIMARY KEY(`depotLegal`), FOREIGN KEY(`famCode`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`depotLegal` TEXT NOT NULL, `nomCommercial` TEXT NOT NULL, `effets` TEXT NOT NULL, `contreIndic` TEXT NOT NULL, `prixEchantillion` REAL NOT NULL, `stocks` INTEGER NOT NULL, `famCode` TEXT NOT NULL, PRIMARY KEY(`depotLegal`), FOREIGN KEY(`famCode`) REFERENCES `Famille`(`code`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "depotLegal",
@@ -138,12 +158,6 @@
           {
             "fieldPath": "nomCommercial",
             "columnName": "nomCommercial",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "composittion",
-            "columnName": "composittion",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -186,6 +200,15 @@
         },
         "indices": [
           {
+            "name": "index_Medicament_nomCommercial",
+            "unique": true,
+            "columnNames": [
+              "nomCommercial"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Medicament_nomCommercial` ON `${TABLE_NAME}` (`nomCommercial`)"
+          },
+          {
             "name": "index_Medicament_famCode",
             "unique": false,
             "columnNames": [
@@ -213,7 +236,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0fabacfd466adb42f63147bb49a43754')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b95ff0387c1405b94fe0d21d52504b1f')"
     ]
   }
 }

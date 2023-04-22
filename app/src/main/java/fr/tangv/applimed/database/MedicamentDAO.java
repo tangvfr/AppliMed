@@ -4,15 +4,13 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
+import androidx.room.RewriteQueriesToDropUnusedColumns;
+import androidx.room.RoomWarnings;
 import androidx.room.Update;
 
 import java.util.List;
 
-import fr.tangv.applimed.model.Famille;
 import fr.tangv.applimed.model.Medicament;
-import fr.tangv.applimed.model.MedicamentEtComposants;
-import fr.tangv.applimed.model.MedicamentEtFamille;
 
 @Dao
 public interface MedicamentDAO {
@@ -32,12 +30,16 @@ public interface MedicamentDAO {
     @Query("SELECT * FROM medicament WHERE depotLegal=:depotLegal;")
     public Medicament findMedicament(String depotLegal);
 
+    @Query("SELECT * FROM medicament WHERE nomCommercial=:name;")
+    public Medicament findMedicamentByName(String name);
+
     @Query("SELECT * FROM medicament WHERE famCode=:famCode;")
     public List<Medicament> findAllMedicamentsByFamille(String famCode);
 
-    public default List<Medicament> findAllMedicamentsByFamille(Famille famille) {
-        return this.findAllMedicamentsByFamille(famille.getCode());
-    }
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT * FROM medicament m, constituer c WHERE m.depotLegal=c.depotLegal AND c.code=:compCode")
+    public List<Medicament> findAllMedicamentsByComposant(String compCode);
 
     @Query("UPDATE medicament SET famCode=:newFamCode WHERE famCode=:oldFamCode")
     public void updateFamCode(String oldFamCode, String newFamCode);
@@ -50,21 +52,5 @@ public interface MedicamentDAO {
 
     @Update
     public void updateMedicaments(Medicament... meds);
-
-    @Transaction
-    @Query("SELECT * FROM medicament WHERE depotLegal=:depotLegal;")
-    public MedicamentEtComposants findMedicamentComp(String depotLegal);
-
-    @Transaction
-    @Query("SELECT * FROM medicament")
-    public List<MedicamentEtComposants> findAllMedicamentComps();
-
-    @Transaction
-    @Query("SELECT * FROM medicament WHERE depotLegal=:depotLegal;")
-    public MedicamentEtFamille findMedicamentEtFamille(String depotLegal);
-
-    @Transaction
-    @Query("SELECT * FROM medicament")
-    public List<MedicamentEtFamille> findAllMedicamentEtFamilles();
 
 }

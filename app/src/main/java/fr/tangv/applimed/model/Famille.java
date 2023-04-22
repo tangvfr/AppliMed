@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import lombok.Data;
 
 @Data
-@Entity
+@Entity(indices = {@Index(value = {"libelle"}, unique = true)})
 public class Famille {
 
     @PrimaryKey

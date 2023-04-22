@@ -54,6 +54,7 @@ public abstract class AMDatabase extends RoomDatabase {
                                 AMDatabase.class,
                                 "db_med_app"
                         )
+                        //.createFromAsset()
                         //migrations
                         /*.addMigrations(
                             AMDatabase.MIGRATION_1_2
@@ -70,5 +71,6 @@ public abstract class AMDatabase extends RoomDatabase {
     public abstract ComposantDAO getComposantDAO();
     public abstract FamilleDAO getFamilleDAO();
     public abstract MedicamentDAO getMedicamentDAO();
+    public abstract ConsituerDAO getConsituerDAO();
 
 }
