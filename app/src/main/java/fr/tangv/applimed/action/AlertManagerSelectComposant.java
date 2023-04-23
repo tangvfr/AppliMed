@@ -59,7 +59,6 @@ public class AlertManagerSelectComposant extends AlertManagerComposant {
         //creation de l'alert
         new AlertDialog.Builder(this.getContext())
                 .setTitle(R.string.form_edit_med_comp)
-                .setCancelable(false)
                 .setMultiChoiceItems(nameList, checkedList, this::onClick)
                 .setNeutralButton(R.string.form_edit_med_ch_comp_clear, this::clearAction)
                 .setNegativeButton(R.string.form_edit_med_ch_comp_cancel, this::cancelAction)
