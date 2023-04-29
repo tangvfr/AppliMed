@@ -71,4 +71,10 @@ dependencies {
     /*testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.2"
     testImplementation 'androidx.test:core:1.5.0'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.2"*/
+
+    //javadoc
+    //To make javadoc generate project with run button.
+    //Then add SDK dependencie as beside example
+    //Then click on Tools->Generate JavaDoc... in AndroidStudio
+    //implementation files('C:/Users/tangv/AppData/Local/Android/Sdk/platforms/android-33/android.jar')
 }
