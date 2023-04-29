@@ -73,6 +73,8 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.2"*/
 
     //javadoc
+    //arg: https://koor.fr/Java/Tutorial/java_javadoc_introduction.wp
+    //encoding: -encoding utf8 -docencoding utf8 -charset utf8
     //To make javadoc generate project with run button.
     //Then add SDK dependencie as beside example
     //Then click on Tools->Generate JavaDoc... in AndroidStudio
