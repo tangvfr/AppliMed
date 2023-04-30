@@ -59,7 +59,7 @@
     <string name="editor_err_msg_med_name_empty">Erreur ! Nom commercial de médicament vide !</string>
     <string name="form_edit_med_depot">Dépôt Légal:</string>
     <string name="form_edit_med_name">Nom Commercial:</string>
-    <string name="form_edit_med_effect">Effects:</string>
+    <string name="form_edit_med_effect">Effets:</string>
     <string name="form_edit_med_alert">ContreIndic:</string>
     <string name="form_edit_med_price">Prix échantillon:</string>
     <string name="form_edit_med_quantity">Quantité Stock:</string>
