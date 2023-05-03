@@ -12,10 +12,17 @@ import androidx.navigation.fragment.NavHostFragment;
 import fr.tangv.applimed.R;
 import fr.tangv.applimed.databinding.FragmentMainMenuBinding;
 
+/**
+ * Controlleur qui permet de gérer le menu d'accueils
+ */
 public class MainMenuFragment extends Fragment {
 
     private FragmentMainMenuBinding binding;
 
+    /**
+     * Méthode appeler lors de la creation de la vue.
+     * Initialise la liaison avec la vue
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -29,6 +36,10 @@ public class MainMenuFragment extends Fragment {
         return this.binding.getRoot();
     }
 
+    /**
+     * Méthode appeler apres la creation de la vue.
+     * Affecte les actions des boutons
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -56,10 +67,14 @@ public class MainMenuFragment extends Fragment {
         });
     }
 
+    /**
+     * Méthode appeler lors de la destruction de la vue.
+     * Libère la variable qui stock la liaison avec la vue
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        this.binding = null;
     }
 
 }

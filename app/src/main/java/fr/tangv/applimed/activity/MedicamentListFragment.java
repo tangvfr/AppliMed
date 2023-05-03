@@ -24,11 +24,18 @@ import fr.tangv.applimed.database.MedicamentDAO;
 import fr.tangv.applimed.databinding.FragmentMedicamentListBinding;
 import fr.tangv.applimed.model.Medicament;
 
+/**
+ * Controlleur qui permet de gérer l'affichage de la liste des médicaments
+ */
 public class MedicamentListFragment extends Fragment {
 
     private FragmentMedicamentListBinding binding;
     private AMDatabase db;
 
+    /**
+     * Méthode appeler lors de la creation de la vue.
+     * Initialise les liaisons avec la base de donnée et la vue
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -48,6 +55,10 @@ public class MedicamentListFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * Méthode appeler apres la creation de la vue.
+     * Charge et afficher les données dans la vue et affecte les actions des boutons
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle saveBundle) {
         super.onViewCreated(view, saveBundle);
@@ -159,10 +170,15 @@ public class MedicamentListFragment extends Fragment {
         return list;
     }
 
+    /**
+     * Méthode appeler lors de la destruction de la vue.
+     * Libère les variables qui stock la liaison avec la page et la connexion avec la base de données
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        this.binding = null;
+        this.db = null;
     }
 
 }
