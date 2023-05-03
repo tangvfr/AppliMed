@@ -12,6 +12,9 @@ import java.util.List;
 
 import fr.tangv.applimed.model.Medicament;
 
+/**
+ * Permet de gérer la base de données avec les models de médicament
+ */
 @Dao
 public interface MedicamentDAO {
 

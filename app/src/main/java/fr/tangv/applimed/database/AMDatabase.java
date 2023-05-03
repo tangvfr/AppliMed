@@ -2,21 +2,18 @@ package fr.tangv.applimed.database;
 
 import android.content.Context;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
-import androidx.room.RenameColumn;
-import androidx.room.RenameTable;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.migration.AutoMigrationSpec;
-import androidx.room.migration.Migration;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import fr.tangv.applimed.model.Composant;
 import fr.tangv.applimed.model.Constituer;
 import fr.tangv.applimed.model.Famille;
 import fr.tangv.applimed.model.Medicament;
 
+/**
+ * Permet de créer la connexion avec la base de donné via Room et d'obtenir les DAO pour interagir avec les models
+ */
 @Database(version = 1,
         /*autoMigrations = {
             @AutoMigration(
@@ -46,6 +43,11 @@ public abstract class AMDatabase extends RoomDatabase {
 
     private static AMDatabase INSTANCE = null;
 
+    /**
+     * Permet d'obtenir une instance de la base de données, si elle n'existe pas elle sera créée.
+     * @param context un context d'application
+     * @return La connexion à la base de donnée
+     */
     public static AMDatabase getInstance(Context context) {
         synchronized (AMDatabase.class) {
             if (AMDatabase.INSTANCE == null) {
@@ -69,9 +71,25 @@ public abstract class AMDatabase extends RoomDatabase {
         return AMDatabase.INSTANCE;
     }
 
+    /**
+     * Permet de récupérer le DAO pour les composants
+     * @return le DAO des composants qui est connecté à la BD
+     */
     public abstract ComposantDAO getComposantDAO();
+    /**
+     * Permet de récupérer le DAO pour les familles
+     * @return le DAO des familles qui est connecté à la BD
+     */
     public abstract FamilleDAO getFamilleDAO();
+    /**
+     * Permet de récupérer le DAO pour les médicaments
+     * @return le DAO des médicaments qui est connecté à la BD
+     */
     public abstract MedicamentDAO getMedicamentDAO();
+    /**
+     * Permet de récupérer le DAO pour la constitution des médicaments
+     * @return le DAO des constitutions de médicament qui est connecté à la BD
+     */
     public abstract ConsituerDAO getConsituerDAO();
 
 }
