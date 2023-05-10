@@ -9,19 +9,28 @@ import androidx.room.PrimaryKey;
 
 import lombok.Data;
 
+/**
+ * Model qui représente l'entité composant dans la base de données
+ */
 @Data
 @Entity(indices = {@Index(value = {"libelle"}, unique = true)})
 public class Composant {
 
+    /**
+     * Code du composant
+     */
     @PrimaryKey
     @NonNull
     private String code;
 
+    /**
+     * Libellé du composant
+     */
     @NonNull
     private String libelle;
 
     /**
-     * Permet de cosntruire un composant de médicament
+     * Permet de construire un composant de médicament
      * @param code le code du composant
      * @param libelle le libellé du composant
      */

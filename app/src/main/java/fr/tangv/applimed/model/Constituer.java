@@ -10,6 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+/**
+ * Model qui représente l'association constituer dans la base de données
+ */
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -22,10 +25,16 @@ import lombok.Getter;
 )
 public class Constituer {
 
+    /**
+     * Code du composant qui constitue le médicament
+     */
     @NonNull
     @ColumnInfo(index = true)
     private String code;
 
+    /**
+     * Dépôt légal du médicament
+     */
     @NonNull
     @ColumnInfo(index = true)
     private String depotLegal;

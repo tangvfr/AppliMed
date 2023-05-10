@@ -55,7 +55,7 @@ public interface ConsituerDAO {
     /**
      * Permet de remplacer un code composant par un autre
      * @param oldCompCode code composant remplacer
-     * @param newCompCode code composant remplacent
+     * @param newCompCode code composant remplaçant
      */
     @Query("UPDATE constituer SET code=:newCompCode WHERE code=:oldCompCode")
     public void updateCompCode(String oldCompCode, String newCompCode);
