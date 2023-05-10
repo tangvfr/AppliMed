@@ -14,7 +14,7 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * Model qui représente l'entité médicament et contient l'association appartenir dans la base de données
+ * Model qui représente l'entité "médicament" et contient l'association "appartenir" dans la base de données
  */
 @Data
 @Entity(

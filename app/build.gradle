@@ -78,5 +78,5 @@ dependencies {
     //To make javadoc generate project with run button.
     //Then add SDK dependencie as beside example
     //Then click on Tools->Generate JavaDoc... in AndroidStudio
-    //implementation files('C:/Users/----/AppData/Local/Android/Sdk/platforms/android-33/android.jar')
+    //implementation files('C:/Users/---/AppData/Local/Android/Sdk/platforms/android-33/android.jar')
 }

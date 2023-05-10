@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import lombok.Data;
 
 /**
- * Model qui représente l'entité famille dans la base de données
+ * Model qui représente l'entité "famille" dans la base de données
  */
 @Data
 @Entity(indices = {@Index(value = {"libelle"}, unique = true)})

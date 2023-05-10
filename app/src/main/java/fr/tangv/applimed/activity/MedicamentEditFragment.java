@@ -166,6 +166,7 @@ public class MedicamentEditFragment extends Fragment {
 
     /**
      * Permet de récupérer le médicament équivalent a la saisie dans le formulaire
+     * @return le médicament équivalent a la saisie dans le formulaire
      */
     private Medicament getMedFromForm() {
         EditMedicamentFormBinding em = this.binding.medForm;

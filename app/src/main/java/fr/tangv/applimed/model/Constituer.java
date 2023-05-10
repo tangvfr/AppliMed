@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 /**
- * Model qui représente l'association constituer dans la base de données
+ * Model qui représente l'association "constituer" dans la base de données
  */
 @Getter
 @EqualsAndHashCode

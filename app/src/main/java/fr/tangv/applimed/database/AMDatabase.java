@@ -41,6 +41,9 @@ public abstract class AMDatabase extends RoomDatabase {
         }
     };*/
 
+    /**
+     * Instance de la connexion à la base de donnée SQLite
+     */
     private static AMDatabase INSTANCE = null;
 
     /**

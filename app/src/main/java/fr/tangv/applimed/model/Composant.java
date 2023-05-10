@@ -1,8 +1,6 @@
 package fr.tangv.applimed.model;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Size;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
@@ -10,7 +8,7 @@ import androidx.room.PrimaryKey;
 import lombok.Data;
 
 /**
- * Model qui représente l'entité composant dans la base de données
+ * Model qui représente l'entité "composant" dans la base de données
  */
 @Data
 @Entity(indices = {@Index(value = {"libelle"}, unique = true)})
