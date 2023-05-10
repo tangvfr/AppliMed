@@ -18,10 +18,21 @@ import lombok.Getter;
 @Getter
 public class AbstractAlertManager {
 
+    /**
+     * Contexte d'application
+     */
     private final Context context;
+    /**
+     * connexion à la base de données
+     */
     private final AMDatabase db;
-
+    /**
+     * Gestionnaire des interfaces
+     */
     private final LayoutInflater inflater;
+    /**
+     * Gestionnaire de navigation entre fragment
+     */
     private final NavController nav;
 
     /**

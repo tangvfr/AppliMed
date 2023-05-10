@@ -11,7 +11,7 @@ android {
         minSdk 26
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
         //for test junit
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -62,7 +62,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
     compileOnly 'org.projectlombok:lombok:1.18.26'
 
-    //jpa
+    //room
     annotationProcessor 'androidx.room:room-compiler:2.5.1'
     implementation 'androidx.room:room-common:2.5.1'
     implementation 'androidx.room:room-runtime:2.5.1'
@@ -73,10 +73,10 @@ dependencies {
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.2"*/
 
     //javadoc
-    //arg: https://koor.fr/Java/Tutorial/java_javadoc_introduction.wp
-    //encoding: -encoding utf8 -docencoding utf8 -charset utf8
+    //https://koor.fr/Java/Tutorial/java_javadoc_introduction.wp
+    //args: -encoding utf8 -docencoding utf8 -charset utf8
     //To make javadoc generate project with run button.
     //Then add SDK dependencie as beside example
     //Then click on Tools->Generate JavaDoc... in AndroidStudio
-    //implementation files('C:/Users/tangv/AppData/Local/Android/Sdk/platforms/android-33/android.jar')
+    //implementation files('C:/Users/---/AppData/Local/Android/Sdk/platforms/android-33/android.jar')
 }

@@ -33,38 +33,38 @@
     <!-- Editor med family-->
     <string name="fam_editor_title">Famille sélectionnée:</string>
     <string name="editor_err_msg_fam_have_med">Erreur ! Médicaments dans cette famille !</string>
-    <string name="editor_err_msg_already_pk_fam">Erreur ! Code de famille déja utilisé !</string>
+    <string name="editor_err_msg_already_pk_fam">Erreur ! Code de famille déjà utilisé !</string>
     <string name="editor_err_msg_empty_pk_fam">Erreur ! Code de famille vide !</string>
-    <string name="editor_err_msg_fam_lib_already">Erreur ! Libelle de famille déja utilisé !</string>
+    <string name="editor_err_msg_fam_lib_already">Erreur ! Libelle de famille déjà utilisé !</string>
     <string name="editor_err_msg_fam_lib_empty">Erreur ! Libelle de famille vide !</string>
 
     <!-- Editor med comp-->
     <string name="comp_editor_title">Composant sélectionné:</string>
     <string name="editor_err_msg_comp_have_med">Erreur ! Médicaments utilisant ce composant !</string>
-    <string name="editor_err_msg_already_pk_comp">Erreur ! Code de composant deja utilisé !</string>
+    <string name="editor_err_msg_already_pk_comp">Erreur ! Code de composant déjà utilisé !</string>
     <string name="editor_err_msg_empty_pk_comp">Erreur ! Code de composant vide !</string>
-    <string name="editor_err_msg_comp_lib_already">Erreur ! Libelle de composant déja utilisé !</string>
+    <string name="editor_err_msg_comp_lib_already">Erreur ! Libelle de composant déjà utilisé !</string>
     <string name="editor_err_msg_comp_lib_empty">Erreur ! Libelle de composant vide !</string>
 
     <!-- Medicament -->
-    <string name="med_title">Liste des Médicaments :</string>
+    <string name="med_title">Liste des Médicaments:</string>
     <string name="no_med">Aucun médicament trouvé !</string>
     <string name="med_name">Nom Commercial</string>
 
     <!-- Editor med-->
     <string name="med_editor_title">Médicament sélectionné:</string>
-    <string name="editor_err_msg_already_pk_med">Erreur ! DepotLégal de médicament deja utilisé !</string>
-    <string name="editor_err_msg_empty_pk_med">Erreur ! DepotLégal de médicament vide !</string>
+    <string name="editor_err_msg_already_pk_med">Erreur ! Dépôt Légal de médicament deja utilisé !</string>
+    <string name="editor_err_msg_empty_pk_med">Erreur ! Dépôt Légal de médicament vide !</string>
     <string name="editor_err_msg_med_name_already">Erreur ! Nom commercial de médicament déjà utilisé !</string>
     <string name="editor_err_msg_med_name_empty">Erreur ! Nom commercial de médicament vide !</string>
-    <string name="form_edit_med_depot">Dépot Légal:</string>
+    <string name="form_edit_med_depot">Dépôt Légal:</string>
     <string name="form_edit_med_name">Nom Commercial:</string>
-    <string name="form_edit_med_effect">Effects:</string>
+    <string name="form_edit_med_effect">Effets:</string>
     <string name="form_edit_med_alert">ContreIndic:</string>
     <string name="form_edit_med_price">Prix échantillon:</string>
     <string name="form_edit_med_quantity">Quantité Stock:</string>
     <string name="form_edit_med_fam">Famille:</string>
-    <string name="form_edit_med_comp">Sélectionné un composant</string>
+    <string name="form_edit_med_comp">Sélectionner des composants:</string>
     <string name="form_edit_med_btn_delete">Supprimer</string>
     <string name="form_edit_med_btn_refresh">Rafraichir</string>
     <string name="form_edit_med_btn_edit">Modifier</string>

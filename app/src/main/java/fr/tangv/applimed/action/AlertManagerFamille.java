@@ -16,7 +16,7 @@ import fr.tangv.applimed.database.FamilleDAO;
 import fr.tangv.applimed.model.Famille;
 
 /**
- * Permet de gérer l'affichage de l'éditeur/supréseur d'une famille de médicament
+ * Permet de gérer l'affichage de l'éditeur/suppresseur d'une famille de médicament
  */
 public class AlertManagerFamille extends AbstractAlertManager {
 
@@ -26,7 +26,7 @@ public class AlertManagerFamille extends AbstractAlertManager {
     private EditText currentLibField = null;
 
     /**
-     * Constructeur du gestionnaire d'etion d'une famille de médicament
+     * Constructeur du gestionnaire d'edition d'une famille de médicament
      * @param view vue qui execute l'action
      * @param db la base de données
      */

@@ -16,6 +16,9 @@ import fr.tangv.applimed.R;
 import fr.tangv.applimed.database.AMDatabase;
 import fr.tangv.applimed.model.Composant;
 
+/**
+ * Permet de gérer l'affichage de la sélection des composants d'un médicament
+ */
 public class AlertManagerSelectComposant extends AlertManagerComposant {
 
     //gobal
@@ -26,12 +29,22 @@ public class AlertManagerSelectComposant extends AlertManagerComposant {
     private List<Composant> listComposant;
     private Set<Composant> choiceComposant;
 
+    /**
+     * Constructeur du gestionnaire de selection des composants d'un médicament
+     * @param view vue qui execute l'action
+     * @param db la base de données
+     * @param formListComposant liste des composants du médicament
+     * @param field champ représentant les composants selectionnés
+     */
     public AlertManagerSelectComposant(View view, AMDatabase db, Set<Composant> formListComposant, TextView field) {
         super(view, db);
         this.formListComposant = formListComposant;
         this.field = field;
     }
 
+    /**
+     * Permet d'afficher le dialog de selection des composants d'un médicament
+     */
     public void editListComposants() {
         //initalisation des valeurs
         this.choiceComposant = new HashSet<>(this.formListComposant.size());//copie des element selection dans une liste temporaire
@@ -95,8 +108,6 @@ public class AlertManagerSelectComposant extends AlertManagerComposant {
             AlertManagerSelectComposant.composantListToString(formListComposant, this.getContext())
         );
     }
-
-
 
     /**
      * Action quand on clique sur le bouton pour cancel

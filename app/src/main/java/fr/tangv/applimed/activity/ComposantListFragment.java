@@ -24,11 +24,18 @@ import fr.tangv.applimed.database.ComposantDAO;
 import fr.tangv.applimed.databinding.FragmentComposantListBinding;
 import fr.tangv.applimed.model.Composant;
 
+/**
+ * Controlleur qui permet de gérer l'affichage de la liste des composants
+ */
 public class ComposantListFragment extends Fragment {
 
     private FragmentComposantListBinding binding;
     private AMDatabase db;
 
+    /**
+     * Méthode appeler lors de la creation de la vue.
+     * Initialise les liaisons avec la base de donnée et la vue
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -52,6 +59,10 @@ public class ComposantListFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * Méthode appeler apres la creation de la vue.
+     * Charge et afficher les données dans la vue et affecte les actions des boutons
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -129,10 +140,15 @@ public class ComposantListFragment extends Fragment {
         return compList;
     }
 
+    /**
+     * Méthode appeler lors de la destruction de la vue.
+     * Libère les variables qui stock la liaison avec la page et la connexion avec la base de données
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        this.binding = null;
+        this.db = null;
     }
 
 }

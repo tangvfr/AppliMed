@@ -7,19 +7,28 @@ import androidx.room.PrimaryKey;
 
 import lombok.Data;
 
+/**
+ * Model qui représente l'entité "famille" dans la base de données
+ */
 @Data
 @Entity(indices = {@Index(value = {"libelle"}, unique = true)})
 public class Famille {
 
+    /**
+     * Code de la famille
+     */
     @PrimaryKey
     @NonNull
     private String code;
 
+    /**
+     * Libellé de la famille
+     */
     @NonNull
     private String libelle;
 
     /**
-     * Permet de cosntruire une fammile de médicament
+     * Permet de construire une fammile de médicament
      * @param code le code de la fammile
      * @param libelle le libellé de la fammile
      */

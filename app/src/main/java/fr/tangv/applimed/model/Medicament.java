@@ -13,6 +13,9 @@ import java.util.List;
 
 import lombok.Data;
 
+/**
+ * Model qui représente l'entité "médicament" et contient l'association "appartenir" dans la base de données
+ */
 @Data
 @Entity(
         foreignKeys = {
@@ -22,17 +25,44 @@ import lombok.Data;
 )
 public class Medicament {
 
+    /**
+     * Dépôt légal du médicament
+     */
     @PrimaryKey
     @NonNull
     private String depotLegal;
+
+    /**
+     * Nom commercial du médicament
+     */
     @NonNull
     private String nomCommercial;
+
+    /**
+     * Les effets du médicament
+     */
     @NonNull
     private String effets;
+
+    /**
+     * Les contre-indications du médicament
+     */
     @NonNull
     private String contreIndic;
+
+    /**
+     * Prix d'un échantillon du médicament
+     */
     private Double prixEchantillion;
+
+    /**
+     * Nombre de médicament en stock
+     */
     private Integer stocks;
+
+    /**
+     * Code famille de la famille du médicament
+     */
     @NonNull
     @ColumnInfo(index = true)
     private String famCode;

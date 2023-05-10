@@ -9,11 +9,18 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import fr.tangv.applimed.databinding.ActivityMainBinding;
 
+/**
+ * Classe qui représente l'activité principale de l'application,
+ * permet de lier, naviguer les controlleurs et vue ensemble
+ */
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    /**
+     * Méthode appeler lors de la creation de l'activité de l'application
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

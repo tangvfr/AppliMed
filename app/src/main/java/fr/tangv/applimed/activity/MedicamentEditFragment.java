@@ -29,6 +29,9 @@ import fr.tangv.applimed.model.Composant;
 import fr.tangv.applimed.model.Famille;
 import fr.tangv.applimed.model.Medicament;
 
+/**
+ * Controlleur qui permet de gérer la modification d'un médicament
+ */
 public class MedicamentEditFragment extends Fragment {
 
     private FragmentMedicamentEditBinding binding;
@@ -38,6 +41,11 @@ public class MedicamentEditFragment extends Fragment {
     private Set<Composant> currentComps = null;
     private Set<Composant> etitedComps = null;
 
+    /**
+     * Méthode appeler lors de la creation de la vue.
+     * Initialise les liaisons avec la base de donnée et la vue.
+     * Et récupère le médicament à afficher.
+     */
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -77,6 +85,10 @@ public class MedicamentEditFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * Méthode appeler apres la creation de la vue.
+     * Charge et afficher les données dans les champs de la vue et affecte les actions des boutons
+     */
     public void onViewCreated(@NonNull View view, Bundle saveBundle) {
         super.onViewCreated(view, saveBundle);
 
@@ -154,6 +166,7 @@ public class MedicamentEditFragment extends Fragment {
 
     /**
      * Permet de récupérer le médicament équivalent a la saisie dans le formulaire
+     * @return le médicament équivalent a la saisie dans le formulaire
      */
     private Medicament getMedFromForm() {
         EditMedicamentFormBinding em = this.binding.medForm;
@@ -243,10 +256,19 @@ public class MedicamentEditFragment extends Fragment {
         }
     }
 
+    /**
+     * Méthode appeler lors de la destruction de la vue.
+     * Libère les variables qui stock la liaison avec la page et la connexion avec la base de données, et celle du médicament
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        this.binding = null;
+        this.db = null;
+        this.currentMed = null;
+        this.currentFam = null;
+        this.currentComps = null;
+        this.etitedComps = null;
     }
 
 }
